@@ -24,12 +24,11 @@ const produtos = [
             categoria : 'Moletom',
             nome: 'Moletom Azul',
             imagem: 'imagens/blusas-moletom/azul.png',
-            preco: 49.90,
-            tamanhos: ['PP', 'P', 'M', 'G']
+            preco: 49.90,            tamanhos: ['PP', 'P', 'M', 'G', 'GG']
         }
 ]
 const categoria_list = [];
-main = document.querySelector('main');
+const main = document.querySelector('main');
 
 document.addEventListener("DOMContentLoaded",()=>{
 
@@ -40,28 +39,43 @@ document.addEventListener("DOMContentLoaded",()=>{
     categorias.forEach(categoria =>{
         main.innerHTML += `<h2>${categoria}</h2>`
         produtos.forEach(produto2 => {
-            if (produto2.categoria == categoria) {
-                document.querySelector('main').innerHTML += `<article>
-                    <img class="imagem-produto" src="${produto2.imagem}" alt="Camiseta branca">
+            if (produto2.categoria === categoria) { // compara a categoria do produto com a categoria atual do loop. adicionado o ===;
+                
+               /*  document.querySelector('main').innerHTML += `<article dado-nome=${produto2.nome} dado-preco=${produto2.preco}> 
+                    <img class="imagem-produto" src="${produto2.imagem}" alt="${produto2.nome}"> 
                     <h3>${produto2.nome}</h3>
                     <p>R$ ${(String((produto2.preco).toFixed(2))).replace('.',',')}</p>
                     <p>Selecione o tamanho</p>
-                    <div>`
+                    <div>` 
+                    comentei todo esse bloco aqui não quis apagar para deixar visual como estava antes, quiser apagar pode apagar, mas foi mais para entender como que tava e como que ficou
+                    o mesmo  serve para o bloco de baixo */
+
+                    let botoesTamanho = ''; // variável para armazenar os botões de tamanho
 
                     produto2.tamanhos.forEach(tamanho => {
-                        document.querySelector('main').innerHTML += `<button>${tamanho}</button>`
+                        botoesTamanho += `<button>${tamanho}</button>`
                     });
-
-                    document.querySelector('main').innerHTML += `
-                </div>
+                    // adicionado o dado-nome e dado-preco para caso queira pegar no carrinho, e adicionado o alt na imagem para acessibilidade.
+                    document.querySelector('main').innerHTML += 
+                    `<article dado-nome=${produto2.nome} dado-preco=${produto2.preco}> 
+                    <img class="imagem-produto" src="${produto2.imagem}" alt="${produto2.nome}"> 
+                    <h3>${produto2.nome}</h3>
+                    <p>R$ ${(String((produto2.preco).toFixed(2))).replace('.',',')}</p>
+                    <p>Selecione o tamanho</p>
+                    <div>
+                        ${botoesTamanho}
+                    </div>
                     <button>Adicionar ao carrinho</button>
-                </article>`
+                    </article>`
+
+                   /*  document.querySelector('main').innerHTML += `
+                    </div>
+                    <button>Adicionar ao carrinho</button>
+                </article>` */
                     
-            }
+            } 
             
         });
     })
-
-   
-    
+  
 })
