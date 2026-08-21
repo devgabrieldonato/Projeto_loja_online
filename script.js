@@ -25,7 +25,7 @@ const produtos = [
             nome: 'Moletom Azul',
             imagem: 'imagens/blusas-moletom/azul.png',
             preco: 49.90,
-            tamanhos: ['PP', 'P', 'M', 'G', 'GG']
+            tamanhos: ['PP', 'P', 'M', 'G']
         }
 ]
 const categoria_list = [];
@@ -46,12 +46,17 @@ document.addEventListener("DOMContentLoaded",()=>{
                     <h3>${produto2.nome}</h3>
                     <p>R$ ${(String((produto2.preco).toFixed(2))).replace('.',',')}</p>
                     <p>Selecione o tamanho</p>
-                    <div>
-                        
-                    </div>
+                    <div>`
+
+                    produto2.tamanhos.forEach(tamanho => {
+                        document.querySelector('main').innerHTML += `<button>${tamanho}</button>`
+                    });
+
+                    document.querySelector('main').innerHTML += `
+                </div>
                     <button>Adicionar ao carrinho</button>
-                </article>
-                <article>`
+                </article>`
+                    
             }
             
         });
