@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let contador = 1;
   categorias.forEach((categoria) => {
     let incremento = `produtos${contador}`;
+    // adição de sections e as divs dentro da nossa estrutura HTML de forma automática.
     const sectionCategoria = document.createElement('section');
     sectionCategoria.classList.add('categorias');
     sectionCategoria.id = contador;
@@ -82,20 +83,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <button>Adicionar ao carrinho</button>
                     </article>`;
-
-        const conjunto = document.getElementById(
-          `conjuntoBotoes_${produto.id}`,
-        );
-        conjunto.addEventListener('click', (e) => {
-          const button = e.target.closest('.buttonTamanho');
-
-          if (button) {
-            const idButton = button.id;
-            console.log(idButton);
-          }
-        });
       }
     });
     contador = contador + 1;
+  });
+
+  main.addEventListener('click', (e) => {
+    const idButton = e.target.id;
+    const button = document.getElementById(idButton);
+
+    if (e.target.closest('.buttonTamanho')) {
+      if (button.classList.contains('tamanhoEscolhido')) {
+        button.classList.remove('tamanhoEscolhido');
+      } else {
+        button.classList.add('tamanhoEscolhido');
+      }
+    }
   });
 });
