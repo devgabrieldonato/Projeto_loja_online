@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div id='conjuntoBotoes_${produto.id}'>
                         ${botoesTamanho}
                     </div>
-                    <button id='adicionarCarrinho${contador}'>Adicionar ao carrinho</button>
+                    <button id='adicionarCarrinho${contador}'class='addCarrinho'>Adicionar ao carrinho</button>
                     </article>`;
       }
     });

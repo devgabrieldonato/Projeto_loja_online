@@ -168,10 +168,6 @@ button:hover {
   color: #4b5563;
 }
 
-.carrinho-fechado {
-  display: none;
-}
-
 .tamanhoEscolhido {
   background-color: #4b5563;
   color: black;
@@ -195,4 +191,15 @@ button:hover {
 .carrinho-aberto {
   /* aqui entra a propriedade que traz a aba de volta pra visível */
   transform: translateX(0);
+}
+
+.btnFechar {
+  border: none;
+  background: none;
+}
+
+.divTitulo {
+  display: flex;
+  gap: 10rem;
+  place-self: center;
 }
