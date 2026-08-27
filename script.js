@@ -352,36 +352,51 @@ const produtos = [
 
 const main = document.querySelector('main');
 
+// Evento para acontecer quando á pagina for carregada
 document.addEventListener('DOMContentLoaded', () => {
+  // salva as categorias em uma lista
   const categorias = [
     ...new Set(produtos.map((produto2) => produto2.categoria)),
   ];
 
   let contador = 1;
+  // forEach para percorrer a categoria, para ir adicionando os itens.
   categorias.forEach((categoria) => {
+    // incremento para salvar o id depois.
     let incremento = `produtos${contador}`;
-    // adição de sections e as divs dentro da nossa estrutura HTML de forma automática.
+    // cria uma section no html
     const sectionCategoria = document.createElement('section');
+    // cria uma classe 'categorias'
     sectionCategoria.classList.add('categorias');
+    //  da um id pra ela que seria o contador, cada vez que o forEach percorre uma vez, aumenta 1 ( nunca vai ser o mesmo)
     sectionCategoria.id = contador;
+    // faz o append ao HTML (adiciona)
     main.append(sectionCategoria);
+    // no id que demos antes na section, ele adiciona a Categoria
     document.getElementById(contador).innerHTML += `<h2>${categoria}</h2>`;
+    // depois de adiconar a section cria uma div
     const divProdutos = document.createElement('div');
+    // demos uma classe de produtos
     divProdutos.classList.add('produtos');
+    // dou o id do incremento (ex : produtos1, produtos2), div onde vai os articles dos itens, onde vamos adicionar os itens
     divProdutos.id = incremento;
+    // fizemos append para o HTML
     document.getElementById(contador).append(divProdutos);
 
+    // forEach do produtos, para percorrer cada item
     produtos.forEach((produto) => {
+      // quando a categoria do item for igual a categoria
       if (produto.categoria === categoria) {
-        // compara a categoria do produto com a categoria atual do loop. adicionado o ===;
-
         let botoesTamanho = ''; // variável para armazenar os botões de tamanho
 
+        // ForEach para criar a quantidade certa de botão, dependeno de quanto tamanho tem cada produto.
         produto.tamanhos.forEach((tamanho) => {
           botoesTamanho += `<button id='${produto.id}_${tamanho}' class='buttonTamanho'>${tamanho}</button>`;
           let id = `${produto.id}_${tamanho}`;
         });
         // adicionado o dado-nome e dado-preco para caso queira pegar no carrinho, e adicionado o alt na imagem para acessibilidade.
+
+        // adicionando itens ao nosso id incremento que demos antes( a div), toda a vez que o for percorrer, ele irá adicionar ao html os itens abaixo.
         document.querySelector(`#${incremento}`).innerHTML +=
           `<article dado-nome=${produto.id} dado-preco=${produto.preco}> 
                     <img class="imagem-produto" src="${produto.imagem}" alt="${produto.nome}"> 
@@ -392,19 +407,24 @@ document.addEventListener('DOMContentLoaded', () => {
                         ${botoesTamanho}
                     </div>
                     <button id='adicionarCarrinho${contador}' class='addCarrinho'>Adicionar ao carrinho</button>
-                    </article>`;
+            </article>`;
+        // contador para crir um id ali para o botão tamanho.
         contador = contador + 1;
       }
     });
   });
 
+  // event para o usuário escolher um tamanho.
   main.addEventListener('click', (e) => {
     const idButton = e.target.id;
     const button = document.getElementById(idButton);
+    // caso haja mais de um tamanho escolhido ele procura todos
     const botoesEscolhidos = document.querySelectorAll('.tamanhoEscolhido');
+    // se tiver ele vai percorrer esse forEach e remover a classe tamanhoEscolhido, para o usuário escolher apenas 1
     botoesEscolhidos.forEach((botao) => {
       botao.classList.remove('tamanhoEscolhido');
     });
+    // verificando se o usuário clicou mesmo na classe 'buttonTamanho', onde está localizada em todos os botões de tamanho.
     if (e.target.closest('.buttonTamanho')) {
       if (button.classList.contains('tamanhoEscolhido')) {
         button.classList.remove('tamanhoEscolhido');
