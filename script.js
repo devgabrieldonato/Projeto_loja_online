@@ -393,8 +393,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button id='adicionarCarrinho${contador}' class='addCarrinho'>Adicionar ao carrinho</button>
                     </article>`;
       }
+      contador = contador + 1;
     });
-    contador = contador + 1;
   });
 
   main.addEventListener('click', (e) => {

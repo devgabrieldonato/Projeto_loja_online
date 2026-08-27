@@ -61,6 +61,8 @@ let itensNoCarrinho = [];
 btnCarrinho.addEventListener('click', addCarrinho);
 
 adicionarAoCarrinho.addEventListener('click', (e) => {
+  const idDiv = e.target.id;
+  const id = idDiv.match(/\d+/);
   if (e.target.closest('.addCarrinho')) {
     const itensSelecionados = document.querySelectorAll('.tamanhoEscolhido');
     itens = [];
@@ -72,20 +74,22 @@ adicionarAoCarrinho.addEventListener('click', (e) => {
 
       produtos.forEach((produto) => {
         itens.forEach((item) => {
-          if (item.id == produto.id) {
-            produto.tamanhos.forEach((tamanho) => {
-              if (item.tamanho === tamanho) {
-                itensNoCarrinho.push({
-                  id: produto.id,
-                  categoria: produto.categoria,
-                  nome: produto.nome,
-                  imagem: produto.imagem,
-                  preco: produto.preco,
-                  tamanho: tamanho,
-                });
-                addCarrinho(itensNoCarrinho);
-              }
-            });
+          if (id == item.id) {
+            if (item.id == produto.id) {
+              produto.tamanhos.forEach((tamanho) => {
+                if (item.tamanho === tamanho) {
+                  itensNoCarrinho.push({
+                    id: produto.id,
+                    categoria: produto.categoria,
+                    nome: produto.nome,
+                    imagem: produto.imagem,
+                    preco: produto.preco,
+                    tamanho: tamanho,
+                  });
+                  addCarrinho(itensNoCarrinho);
+                }
+              });
+            }
           }
         });
       });
