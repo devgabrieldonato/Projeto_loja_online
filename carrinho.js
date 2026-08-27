@@ -24,11 +24,16 @@ function addCarrinho() {
   if (itensNoCarrinho.length >= 1) {
     itensNoCarrinho.forEach((item) => {
       document.getElementById('itens-carrinho').innerHTML += `
-                <div class="carrinho-item">
+               <div class="carrinho-item">
                   <img src="${item.imagem}" alt="${item.nome}" class="carrinho-item-img">
                   <div class="carrinho-item-info">
                     <span class="carrinho-item-nome">${item.nome}</span>
                     <span class="carrinho-item-tamanho">Tamanho: ${item.tamanho}</span>
+                    <div class="carrinho-item-qtd">
+                      <button class="btnQtd btnMenos">-</button>
+                      <span class="carrinho-item-quantidade">1</span>
+                      <button class="btnQtd btnMais">+</button>
+                    </div>
                   </div>
                   <div class="carrinho-item-valor">
                     <span class="carrinho-item-preco">R$ ${String(item.preco.toFixed(2)).replace('.', ',')}</span>

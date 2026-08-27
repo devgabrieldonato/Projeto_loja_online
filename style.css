@@ -355,6 +355,35 @@ button:hover {
   border-radius: 999px;
 }
 
+.carrinho-item-qtd {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.btnQtd {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  color: #374151;
+  background-color: #e5e7eb;
+}
+
+.btnQtd:hover {
+  background-color: #d1d5db;
+}
+
+.carrinho-item-quantidade {
+  min-width: 16px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+}
+
 .carrinho-item-valor {
   font-weight: 700;
   font-size: 14px;
