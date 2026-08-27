@@ -351,43 +351,51 @@ const produtos = [
 ];
 const main = document.querySelector('main');
 
-document.addEventListener("DOMContentLoaded",()=>{
+document.addEventListener('DOMContentLoaded', () => {
+  const categorias = [
+    ...new Set(produtos.map((produto2) => produto2.categoria)),
+  ];
 
-    let tamanho = produtos.length;
-    
-    const categorias = [...new Set(produtos.map((produto) => produto.categoria))];
-    
-    categorias.forEach(categoria =>{
-        main.innerHTML += `<h2>${categoria}</h2>`
-        produtos.forEach(produto2 => {
-            if (produto2.categoria === categoria) { // compara a categoria do produto com a categoria atual do loop. adicionado o ===;
-                
-               /*  document.querySelector('main').innerHTML += `<article dado-nome=${produto2.nome} dado-preco=${produto2.preco}> 
-                    <img class="imagem-produto" src="${produto2.imagem}" alt="${produto2.nome}"> 
-                    <h3>${produto2.nome}</h3>
-                    <p>R$ ${(String((produto2.preco).toFixed(2))).replace('.',',')}</p>
+  let contador = 1;
+  categorias.forEach((categoria) => {
+    let incremento = `produtos${contador}`;
+    // adição de sections e as divs dentro da nossa estrutura HTML de forma automática.
+    const sectionCategoria = document.createElement('section');
+    sectionCategoria.classList.add('categorias');
+    sectionCategoria.id = contador;
+    main.append(sectionCategoria);
+    document.getElementById(contador).innerHTML += `<h2>${categoria}</h2>`;
+    const divProdutos = document.createElement('div');
+    divProdutos.classList.add('produtos');
+    divProdutos.id = incremento;
+    document.getElementById(contador).append(divProdutos);
+
+    produtos.forEach((produto) => {
+      if (produto.categoria === categoria) {
+        // compara a categoria do produto com a categoria atual do loop. adicionado o ===;
+
+        let botoesTamanho = ''; // variável para armazenar os botões de tamanho
+
+        produto.tamanhos.forEach((tamanho) => {
+          botoesTamanho += `<button id='${produto.id}_${tamanho}' class='buttonTamanho'>${tamanho}</button>`;
+          let id = `${produto.id}_${tamanho}`;
+        });
+        // adicionado o dado-nome e dado-preco para caso queira pegar no carrinho, e adicionado o alt na imagem para acessibilidade.
+        document.querySelector(`#${incremento}`).innerHTML +=
+          `<article dado-nome=${produto.id} dado-preco=${produto.preco}> 
+                    <img class="imagem-produto" src="${produto.imagem}" alt="${produto.nome}"> 
+                    <h3>${produto.nome}</h3>
+                    <p>R$ ${String(produto.preco.toFixed(2)).replace('.', ',')}</p>
                     <p>Selecione o tamanho</p>
-                    <div>` 
-                    comentei todo esse bloco aqui não quis apagar para deixar visual como estava antes, quiser apagar pode apagar, mas foi mais para entender como que tava e como que ficou
-                    o mesmo  serve para o bloco de baixo */
-
-                    let botoesTamanho = ''; // variável para armazenar os botões de tamanho
-
-                    produto2.tamanhos.forEach(tamanho => {
-                        botoesTamanho += `<button>${tamanho}</button>`
-                    });
-                    // adicionado o dado-nome e dado-preco para caso queira pegar no carrinho, e adicionado o alt na imagem para acessibilidade.
-                    document.querySelector('main').innerHTML += 
-                    `<article dado-nome=${produto2.nome} dado-preco=${produto2.preco}> 
-                    <img class="imagem-produto" src="${produto2.imagem}" alt="${produto2.nome}"> 
-                    <h3>${produto2.nome}</h3>
-                    <p>R$ ${(String((produto2.preco).toFixed(2))).replace('.',',')}</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
+                    <div id='conjuntoBotoes_${produto.id}'>
                         ${botoesTamanho}
                     </div>
-                    <button>Adicionar ao carrinho</button>
-                    </article>`
+                    <button id='adicionarCarrinho${contador}' class='addCarrinho'>Adicionar ao carrinho</button>
+                    </article>`;
+      }
+    });
+    contador = contador + 1;
+  });
 
   main.addEventListener('click', (e) => {
     const idButton = e.target.id;

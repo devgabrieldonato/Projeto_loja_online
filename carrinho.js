@@ -7,6 +7,7 @@ const sutotal = document.getElementById('subtotal');
 function addCarrinho() {
   carrinho.classList.remove('carrinho-fechado');
   carrinho.classList.add('carrinho-aberto');
+
   let contador = '0';
   if (itensNoCarrinho.length >= 1) {
     contador = itensNoCarrinho.length;
