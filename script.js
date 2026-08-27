@@ -349,6 +349,7 @@ const produtos = [
     tamanhos: ['PP', 'P', 'M', 'G', 'GG'],
   },
 ];
+
 const main = document.querySelector('main');
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -392,8 +393,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <button id='adicionarCarrinho${contador}' class='addCarrinho'>Adicionar ao carrinho</button>
                     </article>`;
+        contador = contador + 1;
       }
-      contador = contador + 1;
     });
   });
 
