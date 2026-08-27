@@ -14,9 +14,11 @@ function addCarrinho() {
   carrinho.classList.add('carrinho-aberto');
 
   // verificando contador
-  let contador = '0';
+  let contador = 0;
   if (itensNoCarrinho.length >= 1) {
-    contador = itensNoCarrinho.length;
+    itensNoCarrinho.forEach((item)=>{
+      contador += item.quantidade
+    })
   }
   let total = 0;
 
@@ -32,27 +34,29 @@ function addCarrinho() {
   // caso haja alguma coisa dentro do itensNoCarinho, irá fazer um forEach, percorrendo cada item e adicionando item no carrinho.
   if (itensNoCarrinho.length >= 1) {
     itensNoCarrinho.forEach((item) => {
+      console.log(itensNoCarrinho)
+      let preco = item.preco * item.quantidade
       document.getElementById('itens-carrinho').innerHTML += `
-               <div class="carrinho-item">
+               <div class="carrinho-item" id="carrinho-item${item.id}">
                   <img src="${item.imagem}" alt="${item.nome}" class="carrinho-item-img">
                   <div class="carrinho-item-info">
                     <span class="carrinho-item-nome">${item.nome}</span>
                     <span class="carrinho-item-tamanho">Tamanho: ${item.tamanho}</span>
                     <div class="carrinho-item-qtd">
-                      <button class="btnQtd btnMenos" id= "btnMenos${item.id}">-</button>
-                      <span class="carrinho-item-quantidade" id'quantidade${item.id}'>${item.quantidade}</span>
-                      <button class="btnQtd btnMais" id="btnMais${item.id}">+</button>
+                      <button class="btnQtd btnMenos" id= "btnMenos${item.id}-${item.tamanho}">-</button>
+                      <span class="carrinho-item-quantidade" id='quantidade${item.id}-${item.tamanho}'>${item.quantidade}</span>
+                      <button class="btnQtd btnMais" id="btnMais${item.id}-${item.tamanho}">+</button>
                     </div>
                   </div>
                   <div class="carrinho-item-valor">
-                    <span class="carrinho-item-preco">R$ ${String(item.preco.toFixed(2)).replace('.', ',')}</span>
+                    <span class="carrinho-item-preco">R$ ${String(preco.toFixed(2)).replace('.', ',')}</span>
                   </div>
                 </div>
 
             
     `;
       // Váriável total
-      total += item.preco;
+      total += preco;
     });
   }
 
@@ -79,16 +83,24 @@ function addCarrinho() {
   // botão para adicionar ou retirar produtos no carrinho
   document.getElementById('itens-carrinho').addEventListener('click', (e) => {
     if (e.target.closest('.btnMais') || e.target.closest('.btnMenos')) {
-      idButton = e.target.id;
+      const idButton = e.target.id;
+      const tamanho = idButton.split("-")
       const id = idButton.replace(/\D/g, '');
       itensNoCarrinho.forEach((item) => {
         if (item.id == id) {
-          if (idButton == `btnMais${id}`) {
+          if (idButton == `btnMais${id}-${tamanho[1]}`) {
             item.quantidade = item.quantidade + 1;
-            console.log(item.quantidade);
-          } else {
+            document.getElementById(`quantidade${id}-${tamanho[1]}`).innerText = item.quantidade
+            addCarrinho(itensNoCarrinho)
+
+          } else if(idButton == `btnMenos${id}-${tamanho[1]}`) {
             item.quantidade = item.quantidade - 1;
-            console.log(item.quantidade);
+            document.getElementById(`quantidade${id}-${tamanho[1]}`).innerText = item.quantidade
+            addCarrinho(itensNoCarrinho)
+            if(item.quantidade <= 0){
+              itensNoCarrinho = itensNoCarrinho.filter(itensNoCarrinho => itensNoCarrinho !== item)
+              addCarrinho(itensNoCarrinho)
+            }
           }
         }
       });
