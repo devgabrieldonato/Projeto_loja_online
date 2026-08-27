@@ -1,672 +1,832 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Basic Shop</title>
-    <link rel="stylesheet" href="style.css">
-    
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <header>
-        <h1 id="Nome_da_loja">Basic Shop</h1>
-        <p>Onde o homem básico se destaca</p>
+      <h1 id="Nome_da_loja">Basic Shop</h1>
+      <p>Onde o homem básico se destaca</p>
 
-        <button id="botao-carrinho">
-            <strong>Carrinho</strong>
-            <span>Itens adicionados: 0</span>
-            <span>Subtotal: R$ 0,00</span>
-        </button>
+      <button id="botao-carrinho">
+        <strong>Carrinho</strong>
+        <span>Itens adicionados: 0</span>
+        <span>Subtotal: R$ 0,00</span>
+      </button>
 
-        <aside id="carrinho" class="carrinho-fechado">
-            <h2>Carrinho</h2>
+      <aside id="carrinho" class="carrinho-fechado">
+        <h2>Carrinho</h2>
 
-            <p>Itens adicionados: 0</p>
+        <p>Itens adicionados: 0</p>
 
-            <div id="itens-carrinho"></div>
+        <div id="itens-carrinho"></div>
 
-            <p>Subtotal: R$ 0,00</p>
-        </aside>
+        <p>Subtotal: R$ 0,00</p>
+      </aside>
     </header>
     <main>
-        <section class="categorias">
-            <h2>Camisetas</h2>
-            <div class="produtos">
-                 <article>
-                    <img class="imagem-produto" src="imagens/camisetas/branco.png" alt="Camiseta branca">
-                    <h3>Camiseta Branca</h3>
-                    <p>R$ 49,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/camisetas/azul.png" alt="Camiseta azul">
-                    <h3>Camiseta Azul</h3>
-                    <p>R$ 49,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/camisetas/cinza.png" alt="Camiseta cinza">
-                    <h3>Camiseta Cinza</h3>
-                    <p>R$ 49,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/camisetas/preto.png" alt="Camiseta preta">
-                    <h3>Camiseta Preta</h3>
-                    <p>R$ 49,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/camisetas/verde.png" alt="Camiseta verde">
-                    <h3>Camiseta Verde</h3>
-                    <p>R$ 49,90</p>
-                     <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/camisetas/vermelho.png" alt="Camiseta vermelha">
-                    <h3>Camiseta Vermelha</h3>
-                    <p>R$ 49,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
+      <section class="categorias">
+        <h2>Camisetas</h2>
+        <div class="produtos">
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/camisetas/branco.png"
+              alt="Camiseta branca"
+            />
+            <h3>Camiseta Branca</h3>
+            <p>R$ 49,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
             </div>
-        </section>
-
-
-        
-        <section class="categorias">
-            <h2>Casacos de Moletom</h2>
-            <div class="produtos">
-                <article>
-                    <img class="imagem-produto" src="imagens/blusas-moletom/branco.png" alt="Casaco branco">
-                    <h3>Casaco Branco</h3>
-                    <p>R$ 129,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/blusas-moletom/azul.png" alt="Casaco azul">
-                    <h3>Casaco Azul</h3>
-                    <p>R$ 129,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/blusas-moletom/cinza.png" alt="Casaco cinza">
-                    <h3>Casaco Cinza</h3>
-                    <p>R$ 129,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/blusas-moletom/preto.png" alt="Casaco preto">
-                    <h3>Casaco Preto</h3>
-                    <p>R$ 129,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/blusas-moletom/verde.png" alt="Casaco verde">
-                    <h3>Casaco Verde</h3>
-                    <p>R$ 129,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/blusas-moletom/vermelho.png" alt="Casaco vermelho">
-                    <h3>Casaco Vermelho</h3>
-                    <p>R$ 129,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/camisetas/azul.png"
+              alt="Camiseta azul"
+            />
+            <h3>Camiseta Azul</h3>
+            <p>R$ 49,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
             </div>
-            
-        </section>
-
-        <section class="categorias">
-            <h2>Bermudas</h2>
-            <div class="produtos">
-                <article>
-                    <img class="imagem-produto" src="imagens/bermudas/branco.png" alt="Bermuda branca">
-                    <h3>Bermuda Branca</h3>
-                    <p>R$ 49,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/bermudas/azul.png" alt="Bermuda azul">
-                    <h3>Bermuda Azul</h3>
-                    <p>R$ 49,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/bermudas/cinza.png" alt="Bermuda cinza">
-                    <h3>Bermuda Cinza</h3>
-                    <p>R$ 49,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/bermudas/preto.png" alt="Bermuda preta">
-                    <h3>Bermuda Preta</h3>
-                    <p>R$ 49,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/bermudas/verde.png" alt="Bermuda verde">
-                    <h3>Bermuda Verde</h3>
-                    <p>R$ 49,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/bermudas/vermelho.png" alt="Bermuda vermelha">
-                    <h3>Bermuda Vermelha</h3>
-                    <p>R$ 49,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/camisetas/cinza.png"
+              alt="Camiseta cinza"
+            />
+            <h3>Camiseta Cinza</h3>
+            <p>R$ 49,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
             </div>
-        </section>
-
-        <section class="categorias">
-            <h2>Calças de Moletom</h2>
-            <div class="produtos">
-                <article>
-                    <img class="imagem-produto" src="imagens/calcas-moletom/branco.png" alt="Calça de moletom branca">
-                    <h3>Calça de Moletom Branca</h3>
-                    <p>R$ 99,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/calcas-moletom/azul.png" alt="Calça de moletom azul">
-                    <h3>Calça de Moletom Azul</h3>
-                    <p>R$ 99,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/calcas-moletom/cinza.png" alt="Calça de moletom cinza">
-                    <h3>Calça de Moletom Cinza</h3>
-                    <p>R$ 99,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/calcas-moletom/preto.png" alt="Calça de moletom preta">
-                    <h3>Calça de Moletom Preta</h3>
-                    <p>R$ 99,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/calcas-moletom/verde.png" alt="Calça de moletom verde">
-                    <h3>Calça de Moletom Verde</h3>
-                    <p>R$ 99,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/calcas-moletom/vermelho.png" alt="Calça de moletom vermelha">
-                    <h3>Calça de Moletom Vermelha</h3>
-                    <p>R$ 99,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/camisetas/preto.png"
+              alt="Camiseta preta"
+            />
+            <h3>Camiseta Preta</h3>
+            <p>R$ 49,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
             </div>
-        </section>
-
-        <section class="categorias">
-            <h2>Meias</h2>
-            <div class="produtos">
-                <article>
-                    <img class="imagem-produto" src="imagens/meias/branco.png" alt="Meias brancas">
-                    <h3>Meias Brancas</h3>
-                    <p>R$ 14,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/meias/azul.png" alt="Meias azuis">
-                    <h3>Meias Azuis</h3>
-                    <p>R$ 14,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/meias/cinza.png" alt="Meias cinzas">
-                    <h3>Meias Cinzas</h3>
-                    <p>R$ 14,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/meias/preto.png" alt="Meias pretas">
-                    <h3>Meias Pretas</h3>
-                    <p>R$ 14,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/meias/verde.png" alt="Meias verdes">
-                    <h3>Meias Verdes</h3>
-                    <p>R$ 14,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/meias/vermelho.png" alt="Meias vermelhas">
-                    <h3>Meias Vermelhas</h3>
-                    <p>R$ 14,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/camisetas/verde.png"
+              alt="Camiseta verde"
+            />
+            <h3>Camiseta Verde</h3>
+            <p>R$ 49,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
             </div>
-        </section>
-
-        <section class="categorias">
-            <h2>Cuecas</h2>
-            <div class="produtos">
-                <article>
-                    <img class="imagem-produto" src="imagens/cuecas/branco.png" alt="Cueca branca">
-                    <h3>Cueca Branca</h3>
-                    <p>R$ 29,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/cuecas/azul.png" alt="Cueca azul">
-                    <h3>Cueca Azul</h3>
-                    <p>R$ 29,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/cuecas/cinza.png" alt="Cueca cinza">
-                    <h3>Cueca Cinza</h3>
-                    <p>R$ 29,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/cuecas/preto.png" alt="Cueca preta">
-                    <h3>Cueca Preta</h3>
-                    <p>R$ 29,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/cuecas/verde.png" alt="Cueca verde">
-                    <h3>Cueca Verde</h3>
-                    <p>R$ 29,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/cuecas/vermelho.png" alt="Cueca vermelha">
-                    <h3>Cueca Vermelha</h3>
-                    <p>R$ 29,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/camisetas/vermelho.png"
+              alt="Camiseta vermelha"
+            />
+            <h3>Camiseta Vermelha</h3>
+            <p>R$ 49,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
             </div>
-        </section>
+            <button>Adicionar ao carrinho</button>
+          </article>
+        </div>
+      </section>
 
-        <section class="categorias">
-            <h2>Bonés</h2>
-            <div class="produtos">
-                <article>
-                    <img class="imagem-produto" src="imagens/bones/branco.png" alt="Boné branco">
-                    <h3>Boné Branco</h3>
-                    <p>R$ 39,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/bones/azul.png" alt="Boné azul">
-                    <h3>Boné Azul</h3>
-                    <p>R$ 39,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/bones/cinza.png" alt="Boné cinza">
-                    <h3>Boné Cinza</h3>
-                    <p>R$ 39,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/bones/preto.png" alt="Boné preto">
-                    <h3>Boné Preto</h3>
-                    <p>R$ 39,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/bones/verde.png" alt="Boné verde">
-                    <h3>Boné Verde</h3>
-                    <p>R$ 39,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
-                <article>
-                    <img class="imagem-produto" src="imagens/bones/vermelho.png" alt="Boné vermelho">
-                    <h3>Boné Vermelho</h3>
-                    <p>R$ 39,90</p>
-                    <p>Selecione o tamanho</p>
-                    <div>
-                        <button>PP</button>
-                        <button>P</button>
-                        <button>M</button>
-                        <button>G</button>
-                        <button>GG</button>
-                    </div>
-                    <button>Adicionar ao carrinho</button>
-                </article>
+      <section class="categorias">
+        <h2>Casacos de Moletom</h2>
+        <div class="produtos">
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/blusas-moletom/branco.png"
+              alt="Casaco branco"
+            />
+            <h3>Casaco Branco</h3>
+            <p>R$ 129,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
             </div>
-        </section>
-        
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/blusas-moletom/azul.png"
+              alt="Casaco azul"
+            />
+            <h3>Casaco Azul</h3>
+            <p>R$ 129,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/blusas-moletom/cinza.png"
+              alt="Casaco cinza"
+            />
+            <h3>Casaco Cinza</h3>
+            <p>R$ 129,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/blusas-moletom/preto.png"
+              alt="Casaco preto"
+            />
+            <h3>Casaco Preto</h3>
+            <p>R$ 129,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/blusas-moletom/verde.png"
+              alt="Casaco verde"
+            />
+            <h3>Casaco Verde</h3>
+            <p>R$ 129,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/blusas-moletom/vermelho.png"
+              alt="Casaco vermelho"
+            />
+            <h3>Casaco Vermelho</h3>
+            <p>R$ 129,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+        </div>
+      </section>
 
-        
+      <section class="categorias">
+        <h2>Bermudas</h2>
+        <div class="produtos">
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/bermudas/branco.png"
+              alt="Bermuda branca"
+            />
+            <h3>Bermuda Branca</h3>
+            <p>R$ 49,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/bermudas/azul.png"
+              alt="Bermuda azul"
+            />
+            <h3>Bermuda Azul</h3>
+            <p>R$ 49,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/bermudas/cinza.png"
+              alt="Bermuda cinza"
+            />
+            <h3>Bermuda Cinza</h3>
+            <p>R$ 49,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/bermudas/preto.png"
+              alt="Bermuda preta"
+            />
+            <h3>Bermuda Preta</h3>
+            <p>R$ 49,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/bermudas/verde.png"
+              alt="Bermuda verde"
+            />
+            <h3>Bermuda Verde</h3>
+            <p>R$ 49,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/bermudas/vermelho.png"
+              alt="Bermuda vermelha"
+            />
+            <h3>Bermuda Vermelha</h3>
+            <p>R$ 49,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="categorias">
+        <h2>Calças de Moletom</h2>
+        <div class="produtos">
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/calcas-moletom/branco.png"
+              alt="Calça de moletom branca"
+            />
+            <h3>Calça de Moletom Branca</h3>
+            <p>R$ 99,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/calcas-moletom/azul.png"
+              alt="Calça de moletom azul"
+            />
+            <h3>Calça de Moletom Azul</h3>
+            <p>R$ 99,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/calcas-moletom/cinza.png"
+              alt="Calça de moletom cinza"
+            />
+            <h3>Calça de Moletom Cinza</h3>
+            <p>R$ 99,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/calcas-moletom/preto.png"
+              alt="Calça de moletom preta"
+            />
+            <h3>Calça de Moletom Preta</h3>
+            <p>R$ 99,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/calcas-moletom/verde.png"
+              alt="Calça de moletom verde"
+            />
+            <h3>Calça de Moletom Verde</h3>
+            <p>R$ 99,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/calcas-moletom/vermelho.png"
+              alt="Calça de moletom vermelha"
+            />
+            <h3>Calça de Moletom Vermelha</h3>
+            <p>R$ 99,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="categorias">
+        <h2>Meias</h2>
+        <div class="produtos">
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/meias/branco.png"
+              alt="Meias brancas"
+            />
+            <h3>Meias Brancas</h3>
+            <p>R$ 14,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/meias/azul.png"
+              alt="Meias azuis"
+            />
+            <h3>Meias Azuis</h3>
+            <p>R$ 14,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/meias/cinza.png"
+              alt="Meias cinzas"
+            />
+            <h3>Meias Cinzas</h3>
+            <p>R$ 14,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/meias/preto.png"
+              alt="Meias pretas"
+            />
+            <h3>Meias Pretas</h3>
+            <p>R$ 14,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/meias/verde.png"
+              alt="Meias verdes"
+            />
+            <h3>Meias Verdes</h3>
+            <p>R$ 14,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/meias/vermelho.png"
+              alt="Meias vermelhas"
+            />
+            <h3>Meias Vermelhas</h3>
+            <p>R$ 14,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="categorias">
+        <h2>Cuecas</h2>
+        <div class="produtos">
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/cuecas/branco.png"
+              alt="Cueca branca"
+            />
+            <h3>Cueca Branca</h3>
+            <p>R$ 29,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/cuecas/azul.png"
+              alt="Cueca azul"
+            />
+            <h3>Cueca Azul</h3>
+            <p>R$ 29,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/cuecas/cinza.png"
+              alt="Cueca cinza"
+            />
+            <h3>Cueca Cinza</h3>
+            <p>R$ 29,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/cuecas/preto.png"
+              alt="Cueca preta"
+            />
+            <h3>Cueca Preta</h3>
+            <p>R$ 29,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/cuecas/verde.png"
+              alt="Cueca verde"
+            />
+            <h3>Cueca Verde</h3>
+            <p>R$ 29,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/cuecas/vermelho.png"
+              alt="Cueca vermelha"
+            />
+            <h3>Cueca Vermelha</h3>
+            <p>R$ 29,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="categorias">
+        <h2>Bonés</h2>
+        <div class="produtos">
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/bones/branco.png"
+              alt="Boné branco"
+            />
+            <h3>Boné Branco</h3>
+            <p>R$ 39,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/bones/azul.png"
+              alt="Boné azul"
+            />
+            <h3>Boné Azul</h3>
+            <p>R$ 39,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/bones/cinza.png"
+              alt="Boné cinza"
+            />
+            <h3>Boné Cinza</h3>
+            <p>R$ 39,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/bones/preto.png"
+              alt="Boné preto"
+            />
+            <h3>Boné Preto</h3>
+            <p>R$ 39,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/bones/verde.png"
+              alt="Boné verde"
+            />
+            <h3>Boné Verde</h3>
+            <p>R$ 39,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+          <article>
+            <img
+              class="imagem-produto"
+              src="imagens/bones/vermelho.png"
+              alt="Boné vermelho"
+            />
+            <h3>Boné Vermelho</h3>
+            <p>R$ 39,90</p>
+            <p>Selecione o tamanho</p>
+            <div>
+              <button>PP</button>
+              <button>P</button>
+              <button>M</button>
+              <button>G</button>
+              <button>GG</button>
+            </div>
+            <button>Adicionar ao carrinho</button>
+          </article>
+        </div>
+      </section>
     </main>
     <script src="carrinho.js"></script>
     <script src="script.js"></script>
-
-</body>
+  </body>
 </html>

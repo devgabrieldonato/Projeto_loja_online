@@ -1,46 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Basic Shop</title>
-    <link rel="stylesheet" href="style.css">
-    
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <header>
-        <h1 id="Nome_da_loja">Basic Shop</h1>
-        <p>Onde o homem básico se destaca</p>
+      <h1 id="Nome_da_loja">Basic Shop</h1>
+      <p>Onde o homem básico se destaca</p>
 
-        <button id="botao-carrinho">
-            <strong>Carrinho</strong>
-            <span>Itens adicionados: 0</span>
-            <span>Subtotal: R$ 0,00</span>
-        </button>
-
-    
-        <aside id="carrinho" class="carrinho-fechado">
-            <h2>Carrinho</h2>
-
-            <p>Itens adicionados: 0</p>
-
-            <div id="itens-carrinho"></div>
-
-            <p>Subtotal: R$ 0,00</p>
-        </aside>
-
+      <button id="botao-carrinho">
+        <strong>Carrinho</strong>
+        <span id="totalItens">Itens adicionados: 0</span>
+        <span id="subtotal">Subtotal: R$ 0,00</span>
+      </button>
     </header>
-    
+
     <main>
-        <section class="categorias">
+      <section class="categorias">
         <div class="produtos"></div>
-        </section>
-        <script src="carrinho.js"></script>
-        <script src="script.js"></script>
+      </section>
+      <script src="carrinho.js"></script>
+      <script src="script.js"></script>
     </main>
 
     <footer>
-        <p>&copy; 2026 Basic Shop. Todos os direitos reservados.</p>
+      <p>&copy; 2026 Basic Shop. Todos os direitos reservados.</p>
     </footer>
-</body>
-</html> 
+  </body>
+</html>
