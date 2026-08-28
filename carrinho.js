@@ -87,7 +87,7 @@ function addCarrinho() {
       const tamanho = idButton.split("-")
       const id = idButton.replace(/\D/g, '');
       itensNoCarrinho.forEach((item) => {
-        if (item.id == id) {
+        if (item.id == id && item.tamanho == tamanho[1]) {
           if (idButton == `btnMais${id}-${tamanho[1]}`) {
             item.quantidade = item.quantidade + 1;
             document.getElementById(`quantidade${id}-${tamanho[1]}`).innerText = item.quantidade
