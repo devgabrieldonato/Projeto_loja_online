@@ -62,7 +62,10 @@ function addCarrinho() {
   // Ultima parte do carrinho.
   carrinho.innerHTML += `
         <p>Subtotal: ${String(total.toFixed(2)).replace('.', ',')}</p>
-        <button>Finalizar Compra</button>`;
+        <button id="btnFinalizar">Finalizar Compra</button>`;
+        document.getElementById('btnFinalizar').addEventListener('click', () => {
+          window.location.href = 'checkout.html';
+        console.log('ok')});
 
   // Fechamento do carrinho, quando botão for clicado
   document.querySelector('.btnFechar').addEventListener('click', () => {
