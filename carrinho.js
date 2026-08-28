@@ -16,9 +16,9 @@ function addCarrinho() {
   // verificando contador
   let contador = 0;
   if (itensNoCarrinho.length >= 1) {
-    itensNoCarrinho.forEach((item)=>{
-      contador += item.quantidade
-    })
+    itensNoCarrinho.forEach((item) => {
+      contador += item.quantidade;
+    });
   }
   let total = 0;
 
@@ -34,7 +34,7 @@ function addCarrinho() {
   // caso haja alguma coisa dentro do itensNoCarinho, irá fazer um forEach, percorrendo cada item e adicionando item no carrinho.
   if (itensNoCarrinho.length >= 1) {
     itensNoCarrinho.forEach((item) => {
-      let preco = item.preco * item.quantidade
+      let preco = item.preco * item.quantidade;
       document.getElementById('itens-carrinho').innerHTML += `
                <div class="carrinho-item" id="carrinho-item${item.id}">
                   <img src="${item.imagem}" alt="${item.nome}" class="carrinho-item-img">
@@ -83,22 +83,25 @@ function addCarrinho() {
   document.getElementById('itens-carrinho').addEventListener('click', (e) => {
     if (e.target.closest('.btnMais') || e.target.closest('.btnMenos')) {
       const idButton = e.target.id;
-      const tamanho = idButton.split("-")
+      const tamanho = idButton.split('-');
       const id = idButton.replace(/\D/g, '');
       itensNoCarrinho.forEach((item) => {
         if (item.id == id && item.tamanho == tamanho[1]) {
           if (idButton == `btnMais${id}-${tamanho[1]}`) {
             item.quantidade = item.quantidade + 1;
-            document.getElementById(`quantidade${id}-${tamanho[1]}`).innerText = item.quantidade
-            addCarrinho(itensNoCarrinho)
-
-          } else if(idButton == `btnMenos${id}-${tamanho[1]}`) {
+            document.getElementById(`quantidade${id}-${tamanho[1]}`).innerText =
+              item.quantidade;
+            addCarrinho(itensNoCarrinho);
+          } else if (idButton == `btnMenos${id}-${tamanho[1]}`) {
             item.quantidade = item.quantidade - 1;
-            document.getElementById(`quantidade${id}-${tamanho[1]}`).innerText = item.quantidade
-            addCarrinho(itensNoCarrinho)
-            if(item.quantidade <= 0){
-              itensNoCarrinho = itensNoCarrinho.filter(itensNoCarrinho => itensNoCarrinho !== item)
-              addCarrinho(itensNoCarrinho)
+            document.getElementById(`quantidade${id}-${tamanho[1]}`).innerText =
+              item.quantidade;
+            addCarrinho(itensNoCarrinho);
+            if (item.quantidade <= 0) {
+              itensNoCarrinho = itensNoCarrinho.filter(
+                (itensNoCarrinho) => itensNoCarrinho !== item,
+              );
+              addCarrinho(itensNoCarrinho);
             }
           }
         }
@@ -121,9 +124,15 @@ adicionarAoCarrinho.addEventListener('click', (e) => {
     // array onde vai ser adicionado os itens
     itens = [];
     if (itensSelecionados.length >= 1) {
-      if(document.getElementById(`conjuntoBotoes_${id}`).classList.contains('.erro')){
-        console.log('a')
-        document.getElementById(`conjuntoBotoes_${id}`).classList.remove('erro')
+      if (
+        document
+          .getElementById(`conjuntoBotoes_${id}`)
+          .classList.contains('erro')
+      ) {
+        let erros = document.querySelectorAll('.erro');
+        erros.forEach((erro) => {
+          erro.classList.remove('erro');
+        });
       }
       // forEach nos produtos selecionados para peegar cada um deles.
       itensSelecionados.forEach((item) => {
@@ -143,27 +152,38 @@ adicionarAoCarrinho.addEventListener('click', (e) => {
               produto.tamanhos.forEach((tamanho) => {
                 // faz a mesma coisa com o tamanho, para salvar o mesmo tamanho.
                 if (item.tamanho === tamanho) {
-                  // salva o objeto no itensNoCarrinho
-                  itensNoCarrinho.push({
-                    id: produto.id,
-                    categoria: produto.categoria,
-                    nome: produto.nome,
-                    imagem: produto.imagem,
-                    preco: produto.preco,
-                    tamanho: tamanho,
-                    quantidade: 1,
+                  const jaExiste = itensNoCarrinho.some((iCarrinho) => {
+                    if (
+                      item.id == iCarrinho.id &&
+                      item.tamanho == iCarrinho.tamanho
+                    ) {
+                      iCarrinho.quantidade += 1;
+                      return true;
+                    }
                   });
-                  // chama a função addCarrinho com o argumento intensNoCarrinho
-                  addCarrinho(itensNoCarrinho);
+                  if (jaExiste) {
+                    addCarrinho(itensNoCarrinho);
+                  } else {
+                    // salva o objeto no itensNoCarrinho
+                    itensNoCarrinho.push({
+                      id: produto.id,
+                      categoria: produto.categoria,
+                      nome: produto.nome,
+                      imagem: produto.imagem,
+                      preco: produto.preco,
+                      tamanho: tamanho,
+                      quantidade: 1,
+                    });
+                    addCarrinho(itensNoCarrinho);
+                  }
                 }
               });
             }
           }
         });
       });
-    }else{
-     document.getElementById(`conjuntoBotoes_${id}`).classList.add('erro')
-      
+    } else {
+      document.getElementById(`conjuntoBotoes_${id}`).classList.add('erro');
     }
   }
 });
