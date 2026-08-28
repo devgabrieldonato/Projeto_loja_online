@@ -34,7 +34,6 @@ function addCarrinho() {
   // caso haja alguma coisa dentro do itensNoCarinho, irá fazer um forEach, percorrendo cada item e adicionando item no carrinho.
   if (itensNoCarrinho.length >= 1) {
     itensNoCarrinho.forEach((item) => {
-      console.log(itensNoCarrinho)
       let preco = item.preco * item.quantidade
       document.getElementById('itens-carrinho').innerHTML += `
                <div class="carrinho-item" id="carrinho-item${item.id}">
@@ -122,6 +121,10 @@ adicionarAoCarrinho.addEventListener('click', (e) => {
     // array onde vai ser adicionado os itens
     itens = [];
     if (itensSelecionados.length >= 1) {
+      if(document.getElementById(`conjuntoBotoes_${id}`).classList.contains('.erro')){
+        console.log('a')
+        document.getElementById(`conjuntoBotoes_${id}`).classList.remove('erro')
+      }
       // forEach nos produtos selecionados para peegar cada um deles.
       itensSelecionados.forEach((item) => {
         // separa o id do tamanho (ex : 1_GG), salva o id no id e o tamanho
@@ -158,6 +161,9 @@ adicionarAoCarrinho.addEventListener('click', (e) => {
           }
         });
       });
+    }else{
+     document.getElementById(`conjuntoBotoes_${id}`).classList.add('erro')
+      
     }
   }
 });

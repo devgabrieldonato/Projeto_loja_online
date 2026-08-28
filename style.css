@@ -417,3 +417,9 @@ button:hover {
 #carrinho > button:hover {
   background-color: #1f2937;
 }
+
+.erro{
+  border: 2px solid red;
+  border-radius: 8px;
+  padding: 2px;
+}
