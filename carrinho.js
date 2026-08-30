@@ -4,11 +4,47 @@ const adicionarAoCarrinho = document.querySelector('main');
 const totalItens = document.getElementById('totalItens');
 const sutotal = document.getElementById('subtotal');
 
-// VariÃ¡vel onde vai os itens que estÃ£o no carrinho
+// Variável onde vai os itens que estão no carrinho
 let itensNoCarrinho = [];
 
-// FunÃ§Ã£o abrir carrinho
+try {
+  const carrinhoSalvo = JSON.parse(
+    sessionStorage.getItem('basicShopCarrinho') || '[]',
+  );
+  if (Array.isArray(carrinhoSalvo)) itensNoCarrinho = carrinhoSalvo;
+} catch {
+  sessionStorage.removeItem('basicShopCarrinho');
+}
+
+function salvarCarrinhoNaSessao() {
+  if (itensNoCarrinho.length > 0) {
+    sessionStorage.setItem(
+      'basicShopCarrinho',
+      JSON.stringify(itensNoCarrinho),
+    );
+  } else {
+    sessionStorage.removeItem('basicShopCarrinho');
+  }
+}
+
+function atualizarResumoCarrinho() {
+  const contador = itensNoCarrinho.reduce(
+    (quantidade, item) => quantidade + item.quantidade,
+    0,
+  );
+  const total = itensNoCarrinho.reduce(
+    (valor, item) => valor + item.preco * item.quantidade,
+    0,
+  );
+  totalItens.innerText = `Itens adicionados: ${contador}`;
+  sutotal.innerText = `Subtotal: R$ ${String(total.toFixed(2)).replace('.', ',')}`;
+}
+
+atualizarResumoCarrinho();
+
+// Função abrir carrinho
 function addCarrinho() {
+  salvarCarrinhoNaSessao();
   // Abrinco carrinho
   carrinho.classList.remove('carrinho-fechado');
   carrinho.classList.add('carrinho-aberto');
@@ -31,7 +67,7 @@ function addCarrinho() {
         <p>Itens adicionados: ${contador}</p>
         <div id="itens-carrinho"></div>`;
 
-  // caso haja alguma coisa dentro do itensNoCarinho, irÃ¡ fazer um forEach, percorrendo cada item e adicionando item no carrinho.
+  // caso haja alguma coisa dentro do itensNoCarinho, irá fazer um forEach, percorrendo cada item e adicionando item no carrinho.
   if (itensNoCarrinho.length >= 1) {
     itensNoCarrinho.forEach((item) => {
       let preco = item.preco * item.quantidade;
@@ -54,20 +90,21 @@ function addCarrinho() {
 
             
     `;
-      // VÃ¡riÃ¡vel total
+      // Váriável total
       total += preco;
     });
   }
 
   // Ultima parte do carrinho.
   carrinho.innerHTML += `
-        <p>Subtotal: ${String(total.toFixed(2)).replace('.', ',')}</p>
+        <p>Subtotal: R$ ${String(total.toFixed(2)).replace('.', ',')}</p>
         <button id="btnFinalizar">Finalizar Compra</button>`;
-        document.getElementById('btnFinalizar').addEventListener('click', () => {
-          window.location.href = 'checkout.html';
-        console.log('ok')});
+  document.getElementById('btnFinalizar').addEventListener('click', () => {
+    salvarCarrinhoNaSessao();
+    window.location.href = 'checkout.html';
+  });
 
-  // Fechamento do carrinho, quando botÃ£o for clicado
+  // Fechamento do carrinho, quando botão for clicado
   document.querySelector('.btnFechar').addEventListener('click', () => {
     carrinho.classList.remove('carrinho-aberto');
     carrinho.classList.add('carrinho-fechado');
@@ -78,11 +115,11 @@ function addCarrinho() {
   //   cada.classList.remove('tamanhoEscolhido');
   // });
 
-  // adicioando informaÃ§Ãµes no carrinho do header
+  // adicioando informações no carrinho do header
   totalItens.innerText = `Itens adicionados: ${contador}`;
   sutotal.innerText = `Subtotal: R$ ${String(total.toFixed(2)).replace('.', ',')}`;
 
-  // botÃ£o para adicionar ou retirar produtos no carrinho
+  // botão para adicionar ou retirar produtos no carrinho
   document.getElementById('itens-carrinho').addEventListener('click', (e) => {
     if (e.target.closest('.btnMais') || e.target.closest('.btnMenos')) {
       const idButton = e.target.id;
@@ -112,20 +149,20 @@ function addCarrinho() {
     }
   });
 }
-// btn para o usuÃ¡rio abrir o carrinho, chama funÃ§Ã£o addCarrinho
+// btn para o usuário abrir o carrinho, chama função addCarrinho
 btnCarrinho.addEventListener('click', addCarrinho);
 
 // btn de adicionar ao carrinho de cada item
 adicionarAoCarrinho.addEventListener('click', (e) => {
-  // pega o id do botÃ£o
+  // pega o id do botão
   const idDiv = e.target.id;
-  // deixa apenas o nÃºmero, retira a string
+  // deixa apenas o número, retira a string
   const id = idDiv.match(/\d+/);
   if (e.target.closest('.addCarrinho')) {
     // Pega todos os tamanhos escolhidos
     const itensSelecionados = document.querySelectorAll('.tamanhoEscolhido');
     // array onde vai ser adicionado os itens
-    itens = [];
+    const itens = [];
     if (itensSelecionados.length >= 1) {
       if (
         document
@@ -150,7 +187,7 @@ adicionarAoCarrinho.addEventListener('click', (e) => {
         itens.forEach((item) => {
           // verifica para ver se o produto que foi selecionado foi adicionado aos itens,
           if (id == item.id) {
-            // quando o id do produto for igual Ã© o item.id quer dizer que Ã© o mesmo produto.
+            // quando o id do produto for igual é o item.id quer dizer que é o mesmo produto.
             if (item.id == produto.id) {
               produto.tamanhos.forEach((tamanho) => {
                 // faz a mesma coisa com o tamanho, para salvar o mesmo tamanho.

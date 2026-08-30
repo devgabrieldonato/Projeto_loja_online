@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <!-- Metadados básicos, título da aba e folha de estilos compartilhada pelo projeto. -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Finalize seu pedido na Basic Shop com segurança e praticidade.">
+    <title>Finalizar compra | Basic Shop</title>
+    <link rel="stylesheet" href="style.css?v=3">
+  </head>
+  <body class="checkout-page">
+    <!-- Cabeçalho: apresenta a identidade da loja e o caminho de volta ao catálogo. -->
+    <header class="checkout-header">
+      <div class="checkout-header-conteudo">
+        <div>
+          <a class="checkout-marca" href="index.html">Basic Shop</a>
+          <p>Onde o homem básico se destaca</p>
+        </div>
+        <a class="checkout-voltar" href="index.html">← Voltar para a loja</a>
+      </div>
+    </header>
+
+    <!-- Conteúdo principal: alterna entre carrinho vazio, formulário e confirmação. -->
+    <main class="checkout-main">
+      <!-- Estado vazio: exibido quando não existem produtos salvos na sessão. -->
+      <section id="checkout-vazio" class="checkout-estado-vazio" aria-labelledby="titulo-carrinho-vazio" hidden>
+        <h1 id="titulo-carrinho-vazio">Seu carrinho está vazio</h1>
+        <p>Adicione produtos antes de seguir para a finalização da compra.</p>
+        <a class="checkout-botao checkout-botao-primario" href="index.html">Ver produtos</a>
+      </section>
+
+      <!-- Conteúdo do checkout: começa oculto e é liberado pelo JavaScript quando há itens. -->
+      <div id="checkout-conteudo" hidden>
+        <!-- Título e orientação da etapa atual da compra. -->
+        <div class="checkout-titulo-pagina">
+          <div><span class="checkout-etapa">Última etapa</span><h1>Finalizar compra</h1></div>
+          <p>Revise seu pedido e informe os dados para entrega.</p>
+        </div>
+
+        <div class="checkout-layout">
+          <!-- Formulário principal: reúne dados pessoais, endereço, cupom e finalização. -->
+          <form id="form-checkout" class="checkout-form" novalidate>
+            <!-- Dados pessoais usados para identificar o cliente e enviar a confirmação. -->
+            <fieldset class="checkout-card">
+              <legend>Dados pessoais</legend>
+              <p class="checkout-legenda">Seus dados serão utilizados apenas para processar e confirmar este pedido.</p>
+              <div class="checkout-campo checkout-campo-largo">
+                <label for="nome">Nome completo <span aria-hidden="true">*</span></label>
+                <input type="text" id="nome" name="nome" autocomplete="name" minlength="3" required aria-describedby="erro-nome">
+                <p id="erro-nome" class="checkout-mensagem-campo" aria-live="polite"></p>
+              </div>
+              <div class="checkout-grade-campos">
+                <div class="checkout-campo">
+                  <label for="email">E-mail <span aria-hidden="true">*</span></label>
+                  <input type="email" id="email" name="email" autocomplete="email" required aria-describedby="erro-email">
+                  <p id="erro-email" class="checkout-mensagem-campo" aria-live="polite"></p>
+                </div>
+                <div class="checkout-campo">
+                  <label for="telefone">WhatsApp/telefone <span>(opcional)</span></label>
+                  <input type="tel" id="telefone" name="telefone" autocomplete="tel" inputmode="tel" maxlength="15" placeholder="(11) 99999-9999" aria-describedby="erro-telefone">
+                  <p id="erro-telefone" class="checkout-mensagem-campo" aria-live="polite"></p>
+                </div>
+              </div>
+            </fieldset>
+
+            <!-- Endereço de entrega: inclui consulta ao ViaCEP e cálculo acadêmico do frete. -->
+            <fieldset class="checkout-card">
+              <legend>Endereço de entrega</legend>
+              <div class="checkout-campo checkout-campo-cep">
+                <label for="cep">CEP <span aria-hidden="true">*</span></label>
+                <div class="checkout-cep-controles">
+                  <input type="text" id="cep" name="cep" autocomplete="postal-code" inputmode="numeric" maxlength="9" placeholder="00000-000" required aria-describedby="erro-cep status-cep">
+                  <button type="button" id="consultar-cep" class="checkout-botao checkout-botao-secundario">Consultar CEP</button>
+                </div>
+                <div class="checkout-cep-ajuda">
+                  <!-- Link externo oficial para auxiliar quem não conhece o próprio CEP. -->
+                  <a href="https://buscacepinter.correios.com.br/" target="_blank" rel="noopener noreferrer">Não sei meu CEP</a>
+                  <span id="status-cep" role="status" aria-live="polite"></span>
+                </div>
+                <p id="erro-cep" class="checkout-mensagem-campo" aria-live="polite"></p>
+              </div>
+
+              <!-- Campos preenchidos pelo ViaCEP ou manualmente quando a API estiver indisponível. -->
+              <div class="checkout-grade-endereco">
+                <div class="checkout-campo checkout-campo-logradouro">
+                  <label for="logradouro">Logradouro <span aria-hidden="true">*</span></label>
+                  <input type="text" id="logradouro" name="logradouro" autocomplete="address-line1" required aria-describedby="erro-logradouro">
+                  <p id="erro-logradouro" class="checkout-mensagem-campo" aria-live="polite"></p>
+                </div>
+                <div class="checkout-campo checkout-campo-numero">
+                  <label for="numero">Número <span aria-hidden="true">*</span></label>
+                  <input type="text" id="numero" name="numero" autocomplete="address-line2" required aria-describedby="erro-numero">
+                  <p id="erro-numero" class="checkout-mensagem-campo" aria-live="polite"></p>
+                </div>
+                <div class="checkout-campo checkout-campo-complemento">
+                  <label for="complemento">Complemento <span>(opcional)</span></label>
+                  <input type="text" id="complemento" name="complemento" autocomplete="address-line3">
+                </div>
+                <div class="checkout-campo checkout-campo-bairro">
+                  <label for="bairro">Bairro <span aria-hidden="true">*</span></label>
+                  <input type="text" id="bairro" name="bairro" required aria-describedby="erro-bairro">
+                  <p id="erro-bairro" class="checkout-mensagem-campo" aria-live="polite"></p>
+                </div>
+                <div class="checkout-campo checkout-campo-cidade">
+                  <label for="cidade">Cidade <span aria-hidden="true">*</span></label>
+                  <input type="text" id="cidade" name="cidade" autocomplete="address-level2" required aria-describedby="erro-cidade">
+                  <p id="erro-cidade" class="checkout-mensagem-campo" aria-live="polite"></p>
+                </div>
+                <div class="checkout-campo checkout-campo-uf">
+                  <label for="uf">UF <span aria-hidden="true">*</span></label>
+                  <input type="text" id="uf" name="uf" autocomplete="address-level1" maxlength="2" required aria-describedby="erro-uf">
+                  <p id="erro-uf" class="checkout-mensagem-campo" aria-live="polite"></p>
+                </div>
+              </div>
+
+              <!-- Resultado do cálculo de frete e prazo atualizado pelo checkout.js. -->
+              <div id="checkout-frete" class="checkout-frete" aria-live="polite">
+                <div><strong>Frete e prazo</strong><p id="status-frete">Consulte um CEP para calcular o frete.</p></div>
+                <span id="valor-frete-card">—</span>
+              </div>
+              <p class="checkout-observacao">Valor e prazo estimados para fins acadêmicos.</p>
+            </fieldset>
+
+            <!-- Cupom: recebe o código, apresenta feedback e permite aplicar ou remover o desconto. -->
+            <fieldset class="checkout-card checkout-cupom">
+              <legend>Cupom de desconto</legend>
+              <label for="codigo-cupom">Código do cupom</label>
+              <div class="checkout-cupom-controles">
+                <input type="text" id="codigo-cupom" name="codigo-cupom" autocomplete="off" spellcheck="false" aria-describedby="mensagem-cupom">
+                <button type="button" id="aplicar-cupom" class="checkout-botao checkout-botao-secundario">Aplicar cupom</button>
+              </div>
+              <p id="mensagem-cupom" class="checkout-mensagem-cupom" role="status" aria-live="polite"></p>
+            </fieldset>
+
+            <!-- Área de erros gerais e botão que dispara a validação e finalização do pedido. -->
+            <div id="status-finalizacao" class="checkout-status-geral" role="status" aria-live="assertive"></div>
+            <button type="submit" id="finalizar-pedido" class="checkout-botao checkout-botao-finalizar">Finalizar compra</button>
+          </form>
+
+          <!-- Resumo: recebe do JavaScript os produtos, controles de quantidade e valores. -->
+          <aside class="checkout-card checkout-resumo" aria-labelledby="titulo-resumo">
+            <h2 id="titulo-resumo">Resumo do pedido</h2>
+            <p id="status-carrinho" class="checkout-resumo-quantidade" role="status"></p>
+            <div id="lista-itens" class="checkout-lista-itens"></div>
+            <!-- dl representa pares de rótulo e valor, como subtotal, frete e total. -->
+            <dl class="checkout-valores">
+              <div><dt>Subtotal</dt><dd id="resumo-subtotal">R$ 0,00</dd></div>
+              <div id="linha-cupom" hidden><dt>Cupom</dt><dd id="resumo-cupom">kurtcobain10</dd></div>
+              <div id="linha-desconto" class="checkout-valor-desconto" hidden><dt>Desconto (10%)</dt><dd id="resumo-desconto">- R$ 0,00</dd></div>
+              <div><dt>Frete</dt><dd id="resumo-frete">A calcular</dd></div>
+              <div class="checkout-valor-total"><dt>Total</dt><dd id="resumo-total">R$ 0,00</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </div>
+
+      <!-- Confirmação: substitui o formulário depois que o pedido é concluído. -->
+      <section id="checkout-confirmacao" class="checkout-confirmacao" aria-labelledby="titulo-confirmacao" tabindex="-1" hidden>
+        <div class="checkout-confirmacao-icone" aria-hidden="true">✓</div>
+        <p class="checkout-etapa">Compra concluída</p>
+        <h1 id="titulo-confirmacao">Pedido realizado com sucesso!</h1>
+        <p id="confirmacao-introducao"></p>
+        <!-- Comprovante preenchido dinamicamente com os dados consolidados do pedido. -->
+        <dl class="checkout-comprovante">
+          <div><dt>Número do pedido</dt><dd id="confirmacao-id"></dd></div>
+          <div><dt>Cliente</dt><dd id="confirmacao-cliente"></dd></div>
+          <div><dt>E-mail</dt><dd id="confirmacao-email"></dd></div>
+          <div><dt>Itens</dt><dd id="confirmacao-itens"></dd></div>
+          <div><dt>Subtotal</dt><dd id="confirmacao-subtotal"></dd></div>
+          <div id="confirmacao-linha-cupom" hidden><dt>Cupom</dt><dd id="confirmacao-cupom"></dd></div>
+          <div id="confirmacao-linha-desconto" hidden><dt>Desconto</dt><dd id="confirmacao-desconto"></dd></div>
+          <div><dt>Frete</dt><dd id="confirmacao-frete"></dd></div>
+          <div><dt>Total</dt><dd id="confirmacao-total"></dd></div>
+          <div><dt>Prazo estimado</dt><dd id="confirmacao-prazo"></dd></div>
+        </dl>
+        <p id="status-email" class="checkout-status-email" role="status" aria-live="polite"></p>
+        <a class="checkout-botao checkout-botao-primario" href="index.html">Voltar para a página inicial</a>
+
+        <!-- Avaliação opcional: nota e comentário ficam armazenados apenas no navegador. -->
+        <form id="form-avaliacao" class="checkout-avaliacao" novalidate>
+          <fieldset>
+            <legend>Conte como foi sua experiência</legend>
+            <p>Sua avaliação é opcional e ficará salva somente neste navegador.</p>
+            <!-- Radios acessíveis representados visualmente por estrelas. -->
+            <div class="checkout-estrelas" aria-describedby="erro-nota">
+              <input type="radio" name="nota" id="nota-5" value="5"><label for="nota-5" aria-label="5 estrelas">★</label>
+              <input type="radio" name="nota" id="nota-4" value="4"><label for="nota-4" aria-label="4 estrelas">★</label>
+              <input type="radio" name="nota" id="nota-3" value="3"><label for="nota-3" aria-label="3 estrelas">★</label>
+              <input type="radio" name="nota" id="nota-2" value="2"><label for="nota-2" aria-label="2 estrelas">★</label>
+              <input type="radio" name="nota" id="nota-1" value="1"><label for="nota-1" aria-label="1 estrela">★</label>
+            </div>
+            <p id="erro-nota" class="checkout-mensagem-campo" aria-live="polite"></p>
+            <label for="comentario">Comentário <span>(opcional)</span></label>
+            <textarea id="comentario" name="comentario" rows="4" maxlength="500" aria-describedby="contador-comentario erro-comentario"></textarea>
+            <div class="checkout-comentario-rodape">
+              <p id="erro-comentario" class="checkout-mensagem-campo" aria-live="polite"></p>
+              <span id="contador-comentario">0/500</span>
+            </div>
+            <button type="submit" id="enviar-avaliacao" class="checkout-botao checkout-botao-secundario">Enviar avaliação</button>
+            <p id="status-avaliacao" role="status" aria-live="polite"></p>
+          </fieldset>
+        </form>
+      </section>
+    </main>
+
+    <!-- Rodapé institucional da página. -->
+    <footer class="checkout-footer"><p>&copy; 2026 Basic Shop. Todos os direitos reservados.</p></footer>
+    <!-- SDK externo do EmailJS e, em seguida, as regras locais do checkout. -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="checkout.js?v=5"></script>
+  </body>
+</html>

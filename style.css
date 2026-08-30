@@ -1,5 +1,3 @@
-
-Style Â· CSS
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
  
 * {
@@ -293,7 +291,7 @@ button:hover {
 }
  
 #itens-carrinho:empty::after {
-  content: 'Seu carrinho estÃ¡ vazio';
+  content: 'Seu carrinho está vazio';
   display: block;
   padding: 32px 0;
   text-align: center;
@@ -420,7 +418,7 @@ button:hover {
   background-color: #1f2937;
 }
  
-/* ===== ESTADO DE ERRO (tamanho nÃ£o selecionado) ===== */
+/* ===== ESTADO DE ERRO (tamanho não selecionado) ===== */
  
 .erro {
   border: 1.5px solid #ef4444;
@@ -447,6 +445,785 @@ button:hover {
   }
   80% {
     transform: translateX(3px);
+  }
+}
+
+/* ===== CHECKOUT ===== */
+
+/* Controla elementos ocultos e define a aparência geral exclusiva da página. */
+.checkout-page [hidden] {
+  display: none !important;
+}
+
+.checkout-page {
+  min-height: 100vh;
+  color: #1f2937;
+  background: #f5f5f5;
+}
+
+/* Padroniza campos de texto, estados de foco, campos desativados e acessibilidade. */
+.checkout-page input,
+.checkout-page textarea {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  padding: 11px 12px;
+  font: inherit;
+  color: #111827;
+  background: #fff;
+}
+
+.checkout-page input:focus,
+.checkout-page textarea:focus {
+  outline: 2px solid #0f766e;
+  outline-offset: 1px;
+  border-color: #0f766e;
+}
+
+.checkout-page input:disabled {
+  color: #374151;
+  background: #f3f4f6;
+  cursor: not-allowed;
+}
+
+.checkout-page a:focus-visible,
+.checkout-page button:focus-visible,
+.checkout-page input:focus-visible,
+.checkout-page textarea:focus-visible {
+  outline: 2px solid #0f766e;
+  outline-offset: 2px;
+}
+
+/* Organiza o cabeçalho, a marca da loja e o link de retorno ao catálogo. */
+.checkout-header {
+  padding: 28px 20px;
+  text-align: left;
+}
+
+.checkout-header-conteudo {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.checkout-header p {
+  margin: 5px 0 0;
+}
+
+.checkout-marca {
+  color: #fff;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  text-decoration: none;
+}
+
+.checkout-voltar {
+  padding: 9px 14px;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 7px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.checkout-voltar:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Define a largura do conteúdo e a apresentação do título da etapa. */
+.checkout-main {
+  width: min(1180px, 100%);
+  min-height: calc(100vh - 190px);
+  margin: 0 auto;
+  padding: 32px 20px 56px;
+}
+
+.checkout-titulo-pagina {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.checkout-titulo-pagina h1,
+.checkout-confirmacao h1,
+.checkout-estado-vazio h1 {
+  margin: 4px 0 0;
+  color: #111827;
+  font-size: clamp(27px, 4vw, 36px);
+  letter-spacing: -0.5px;
+}
+
+.checkout-titulo-pagina > p {
+  margin: 0;
+  color: #6b7280;
+}
+
+.checkout-etapa {
+  color: #0f766e;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+/* Cria o layout principal em duas colunas e a aparência reutilizável dos cards. */
+.checkout-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 390px;
+  align-items: start;
+  gap: 24px;
+}
+
+.checkout-form {
+  display: grid;
+  gap: 20px;
+}
+
+.checkout-card {
+  min-width: 0;
+  margin: 0;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.checkout-card > legend,
+.checkout-avaliacao legend {
+  padding: 0 7px;
+  color: #111827;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.checkout-legenda,
+.checkout-observacao {
+  margin: 0 0 18px;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+/* Distribui os campos pessoais e de endereço nas grades do formulário. */
+.checkout-grade-campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.checkout-grade-endereco {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+
+.checkout-campo {
+  min-width: 0;
+}
+
+.checkout-campo + .checkout-campo-largo,
+.checkout-campo-largo + .checkout-grade-campos {
+  margin-top: 16px;
+}
+
+.checkout-campo label,
+.checkout-cupom > label,
+.checkout-avaliacao > fieldset > label {
+  display: inline-block;
+  margin-bottom: 7px;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.checkout-campo label span,
+.checkout-cupom label span,
+.checkout-avaliacao label span {
+  color: #6b7280;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.checkout-campo-logradouro {
+  grid-column: span 4;
+}
+
+.checkout-campo-numero {
+  grid-column: span 2;
+}
+
+.checkout-campo-complemento,
+.checkout-campo-bairro,
+.checkout-campo-cidade {
+  grid-column: span 2;
+}
+
+.checkout-campo-uf {
+  grid-column: span 1;
+}
+
+.checkout-campo-cidade {
+  grid-column: span 3;
+}
+
+/* Agrupa campo, botão e mensagens auxiliares da consulta de CEP e do cupom. */
+.checkout-campo-cep {
+  width: min(430px, 100%);
+  margin-bottom: 18px;
+}
+
+.checkout-cep-controles,
+.checkout-cupom-controles {
+  display: flex;
+  align-items: stretch;
+  gap: 9px;
+}
+
+.checkout-cep-controles input,
+.checkout-cupom-controles input {
+  flex: 1;
+}
+
+.checkout-cep-ajuda {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 20px;
+  margin-top: 7px;
+  font-size: 12px;
+}
+
+.checkout-cep-ajuda a {
+  color: #0f766e;
+  font-weight: 600;
+}
+
+.checkout-cep-ajuda span {
+  color: #0f766e;
+}
+
+/* Apresenta erros de validação em texto e destaca visualmente o campo inválido. */
+.checkout-mensagem-campo,
+.checkout-mensagem-cupom {
+  min-height: 18px;
+  margin: 4px 0 0;
+  color: #b91c1c;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.checkout-input-erro {
+  border-color: #dc2626 !important;
+  background: #fffafa !important;
+}
+
+/* Exibe o resultado do valor e prazo calculados para a entrega. */
+.checkout-frete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 20px;
+  padding: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #f9fafb;
+}
+
+.checkout-frete strong {
+  color: #111827;
+  font-size: 14px;
+}
+
+.checkout-frete p {
+  margin: 4px 0 0;
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.checkout-frete > span {
+  flex-shrink: 0;
+  color: #0f766e;
+  font-weight: 800;
+}
+
+.checkout-observacao {
+  margin: 8px 0 0;
+}
+
+/* Padroniza botões, variações de cor, estados de hover e estado desabilitado. */
+.checkout-botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 7px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.checkout-botao:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.checkout-botao-primario,
+.checkout-botao-finalizar {
+  color: #fff;
+  background: #111827;
+}
+
+.checkout-botao-primario:hover,
+.checkout-botao-finalizar:hover {
+  background: #1f2937;
+}
+
+.checkout-botao-secundario {
+  color: #fff;
+  background: #0f766e;
+}
+
+.checkout-botao-secundario:hover {
+  background: #115e59;
+}
+
+.checkout-botao-finalizar {
+  width: 100%;
+  min-height: 50px;
+  font-size: 15px;
+}
+
+.checkout-status-geral {
+  min-height: 22px;
+  color: #b91c1c;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Diferencia visualmente o cupom aplicado e as mensagens de erro. */
+.checkout-cupom-controles {
+  margin-top: 7px;
+}
+
+.checkout-cupom-aplicado {
+  border-color: #5eead4;
+  background: #f0fdfa;
+}
+
+.checkout-cupom-aplicado .checkout-mensagem-cupom,
+.checkout-cupom-aplicado {
+  color: #0f766e;
+}
+
+.checkout-cupom-erro {
+  color: #b91c1c;
+}
+
+.checkout-cupom-aplicado {
+  color: #0f766e;
+}
+
+/* Mantém o resumo visível em telas grandes e organiza a lista de produtos. */
+.checkout-resumo {
+  position: sticky;
+  top: 20px;
+}
+
+.checkout-resumo h2 {
+  margin: 0;
+  color: #111827;
+  font-size: 20px;
+}
+
+.checkout-resumo-quantidade {
+  margin: 5px 0 18px;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.checkout-lista-itens {
+  display: grid;
+  max-height: 390px;
+  overflow-y: auto;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Monta cada produto em colunas: imagem, informações e valor total. */
+.checkout-page .checkout-item {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 14px 0;
+  border: 0;
+  border-bottom: 1px solid #f0f0f0;
+  border-radius: 0;
+  box-shadow: none;
+  text-align: left;
+  transform: none;
+  transition: none;
+}
+
+.checkout-page .checkout-item:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+.checkout-page .checkout-item:last-child {
+  border-bottom: 0;
+}
+
+.checkout-item-imagem {
+  width: 58px;
+  height: 58px;
+  padding: 5px;
+  border-radius: 8px;
+  object-fit: contain;
+  background: #a1a4a9;
+}
+
+.checkout-item-informacoes {
+  min-width: 0;
+}
+
+.checkout-page .checkout-item h3,
+.checkout-page .checkout-item p,
+.checkout-page .checkout-item small {
+  margin: 0;
+  color: #6b7280;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.checkout-page .checkout-item h3 {
+  margin-bottom: 3px;
+  color: #111827;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.checkout-item-total {
+  color: #0f766e;
+  font-size: 13px;
+}
+
+/* Estiliza os controles usados para aumentar ou diminuir a quantidade. */
+.checkout-item-controles {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.checkout-quantidade-botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #fff;
+  color: #111827;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.checkout-quantidade-botao:hover {
+  border-color: #111827;
+}
+
+.checkout-item-quantidade {
+  min-width: 20px;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* Organiza subtotal, cupom, desconto, frete e destaca o total final. */
+.checkout-valores {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+}
+
+.checkout-valores > div,
+.checkout-comprovante > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.checkout-valores dt,
+.checkout-valores dd {
+  margin: 0;
+  font-size: 13px;
+}
+
+.checkout-valores dd {
+  color: #111827;
+  font-weight: 700;
+  text-align: right;
+}
+
+.checkout-valor-desconto dt,
+.checkout-valor-desconto dd {
+  color: #0f766e;
+}
+
+.checkout-valores .checkout-valor-total {
+  margin-top: 5px;
+  padding-top: 15px;
+  border-top: 1px dashed #d1d5db;
+}
+
+.checkout-valor-total dt,
+.checkout-valor-total dd {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+/* Cria os cards centrais usados no carrinho vazio e na confirmação do pedido. */
+.checkout-estado-vazio,
+.checkout-confirmacao {
+  width: min(760px, 100%);
+  margin: 28px auto;
+  padding: clamp(26px, 6vw, 48px);
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  text-align: center;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.checkout-estado-vazio p,
+.checkout-confirmacao > p {
+  color: #6b7280;
+}
+
+.checkout-confirmacao-icone {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  color: #fff;
+  background: #0f766e;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+/* Formata os pares de informação exibidos no comprovante. */
+.checkout-comprovante {
+  display: grid;
+  gap: 10px;
+  margin: 24px 0;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: left;
+  background: #f9fafb;
+}
+
+.checkout-comprovante dt,
+.checkout-comprovante dd {
+  margin: 0;
+  font-size: 13px;
+}
+
+.checkout-comprovante dt {
+  color: #6b7280;
+}
+
+.checkout-comprovante dd {
+  color: #111827;
+  font-weight: 700;
+  text-align: right;
+}
+
+/* Reserva espaço para o retorno do EmailJS sem deslocar o restante da página. */
+.checkout-status-email {
+  min-height: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Separa e organiza o formulário opcional de avaliação. */
+.checkout-avaliacao {
+  margin-top: 32px;
+  padding-top: 26px;
+  border-top: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.checkout-avaliacao fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.checkout-avaliacao p {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+/* Transforma os radios em estrelas, mantendo foco e seleção acessíveis. */
+.checkout-estrelas {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  margin: 8px 0;
+}
+
+.checkout-estrelas input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.checkout-estrelas label {
+  padding: 2px;
+  color: #d1d5db;
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.checkout-estrelas label:hover,
+.checkout-estrelas label:hover ~ label,
+.checkout-estrelas input:checked ~ label {
+  color: #d97706;
+}
+
+.checkout-estrelas input:focus-visible + label {
+  outline: 2px solid #0f766e;
+  outline-offset: 2px;
+}
+
+/* Alinha mensagem de comentário e contador de caracteres. */
+.checkout-comentario-rodape {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.checkout-comentario-rodape span {
+  flex-shrink: 0;
+  color: #6b7280;
+  font-size: 12px;
+}
+
+/* Finaliza a identidade visual com o rodapé do checkout. */
+.checkout-footer {
+  padding: 22px 20px;
+  text-align: center;
+  color: #9ca3af;
+  background: #111827;
+}
+
+.checkout-footer p {
+  margin: 0;
+  font-size: 13px;
+}
+
+/* Em tablets, transforma o layout em uma coluna e move o resumo para o topo. */
+@media (max-width: 880px) {
+  .checkout-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-resumo {
+    position: static;
+    grid-row: 1;
+  }
+}
+
+/* Em celulares, empilha campos e ajusta produtos e comprovante à largura disponível. */
+@media (max-width: 640px) {
+  .checkout-header-conteudo,
+  .checkout-titulo-pagina {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .checkout-header {
+    padding: 22px 18px;
+  }
+
+  .checkout-main {
+    padding: 24px 14px 40px;
+  }
+
+  .checkout-card {
+    padding: 19px 16px;
+  }
+
+  .checkout-grade-campos,
+  .checkout-grade-endereco {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-campo-logradouro,
+  .checkout-campo-numero,
+  .checkout-campo-complemento,
+  .checkout-campo-bairro,
+  .checkout-campo-cidade,
+  .checkout-campo-uf {
+    grid-column: auto;
+  }
+
+  .checkout-cep-controles,
+  .checkout-cupom-controles {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .checkout-cep-ajuda {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .checkout-page .checkout-item {
+    grid-template-columns: 52px minmax(0, 1fr);
+  }
+
+  .checkout-item-imagem {
+    width: 52px;
+    height: 52px;
+  }
+
+  .checkout-item-total {
+    grid-column: 2;
+  }
+
+  .checkout-comprovante > div {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .checkout-comprovante dd {
+    text-align: left;
+    overflow-wrap: anywhere;
   }
 }
  
