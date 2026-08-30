@@ -38,9 +38,74 @@ header p {
 }
 
 main {
-  width: min(1180px, 100%);
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+  width: min(1320px, 100%);
   margin: 0 auto;
-  padding: 32px 20px;
+  padding: 32px 12px;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  position: sticky;
+  top: 20px;
+  padding: 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.filters ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: stretch;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.filter-option {
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #374151;
+}
+
+.botao_filtro {
+  width: 100%;
+  min-height: 34px;
+  padding: 8px 12px;
+  text-align: left;
+  color: #374151;
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+}
+
+.botao_filtro:hover {
+  background-color: #e5e7eb;
+  opacity: 1;
+}
+
+.botao_filtro.filtro-ativo {
+  color: white;
+  background-color: #0f766e;
+  border-color: #0f766e;
+}
+
+.sem-produtos {
+  margin: 24px 0 48px;
+  padding: 24px;
+  text-align: center;
+  color: #6b7280;
+  border: 1px dashed #d1d5db;
+  border-radius: 8px;
+  background-color: white;
 }
 
 .categorias {
@@ -416,4 +481,14 @@ button:hover {
 
 #carrinho > button:hover {
   background-color: #1f2937;
+}
+
+@media (max-width: 760px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    position: static;
+  }
 }
