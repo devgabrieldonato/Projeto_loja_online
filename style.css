@@ -1,22 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
- 
+
 * {
   box-sizing: border-box;
 }
- 
+
 body {
   margin: 0;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   color: #1f2937;
   background-color: #f5f5f5;
 }
- 
+
 a:focus-visible,
 button:focus-visible {
   outline: 2px solid #0f766e;
   outline-offset: 2px;
 }
- 
+
 header {
   position: relative;
   padding: 40px 20px;
@@ -24,29 +24,94 @@ header {
   color: white;
   background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
 }
- 
+
 #Nome_da_loja {
   margin: 0;
   font-size: 40px;
   font-weight: 800;
   letter-spacing: -0.5px;
 }
- 
+
 header p {
   margin: 8px 0 0;
   color: #9ca3af;
 }
- 
+
 main {
-  width: min(1180px, 100%);
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+  width: min(1320px, 100%);
   margin: 0 auto;
-  padding: 32px 20px;
+  padding: 32px 12px;
 }
- 
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  position: sticky;
+  top: 20px;
+  padding: 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.filters ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: stretch;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.filter-option {
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #374151;
+}
+
+.botao_filtro {
+  width: 100%;
+  min-height: 34px;
+  padding: 8px 12px;
+  text-align: left;
+  color: #374151;
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+}
+
+.botao_filtro:hover {
+  background-color: #e5e7eb;
+  opacity: 1;
+}
+
+.botao_filtro.filtro-ativo {
+  color: white;
+  background-color: #0f766e;
+  border-color: #0f766e;
+}
+
+.sem-produtos {
+  margin: 24px 0 48px;
+  padding: 24px;
+  text-align: center;
+  color: #6b7280;
+  border: 1px dashed #d1d5db;
+  border-radius: 8px;
+  background-color: white;
+}
+
 .categorias {
   margin-bottom: 48px;
 }
- 
+
 .categorias h2 {
   position: relative;
   margin: 0 0 20px;
@@ -56,7 +121,7 @@ main {
   font-weight: 700;
   letter-spacing: -0.3px;
 }
- 
+
 .categorias h2::after {
   content: '';
   position: absolute;
@@ -66,14 +131,14 @@ main {
   height: 2px;
   background-color: #0f766e;
 }
- 
+
 .produtos {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 24px;
   text-align: center;
 }
- 
+
 article {
   padding: 20px;
   border: 1px solid #e5e7eb;
@@ -84,12 +149,12 @@ article {
     transform 0.2s ease,
     box-shadow 0.2s ease;
 }
- 
+
 article:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
 }
- 
+
 .imagem-produto {
   width: 100%;
   height: 190px;
@@ -98,35 +163,35 @@ article:hover {
   border-radius: 8px;
   background-color: #a1a4a9;
 }
- 
+
 article h3 {
   margin: 16px 0 8px;
   font-size: 18px;
   font-weight: 600;
 }
- 
+
 article p {
   margin: 8px 0;
 }
- 
+
 article p:nth-of-type(1) {
   font-size: 18px;
   font-weight: bold;
   color: #0f766e;
 }
- 
+
 article p:nth-of-type(2) {
   font-size: 14px;
   color: #6b7280;
 }
- 
+
 article div {
   display: flex;
   justify-content: center;
   gap: 6px;
   margin: 12px 0;
 }
- 
+
 button {
   cursor: pointer;
   border: 0;
@@ -137,18 +202,18 @@ button {
     transform 0.1s ease,
     opacity 0.15s ease;
 }
- 
+
 article div button {
   width: 36px;
   height: 32px;
   color: #374151;
   background-color: #e5e7eb;
 }
- 
+
 article div button:hover {
   background-color: #d1d5db;
 }
- 
+
 article > button {
   width: 100%;
   margin-top: 8px;
@@ -156,19 +221,19 @@ article > button {
   color: white;
   background-color: #111827;
 }
- 
+
 article > button:hover {
   background-color: #1f2937;
 }
- 
+
 button:active {
   transform: scale(0.97);
 }
- 
+
 button:hover {
   opacity: 0.85;
 }
- 
+
 #botao-carrinho {
   position: absolute;
   top: 24px;
@@ -189,32 +254,32 @@ button:hover {
     border-color 0.15s ease,
     transform 0.15s ease;
 }
- 
+
 #botao-carrinho:hover {
   background-color: rgba(255, 255, 255, 0.14);
   border-color: rgba(255, 255, 255, 0.28);
   transform: translateY(-1px);
   opacity: 1;
 }
- 
+
 #botao-carrinho strong {
   font-size: 15px;
   font-weight: 600;
 }
- 
+
 #botao-carrinho span {
   font-size: 13px;
   font-weight: normal;
   color: rgba(255, 255, 255, 0.7);
 }
- 
+
 .tamanhoEscolhido {
   background-color: #4b5563;
   color: black;
 }
- 
+
 /* ===== CARRINHO ===== */
- 
+
 #carrinho {
   position: fixed;
   top: 0;
@@ -230,15 +295,15 @@ button:hover {
   transition: transform 0.3s ease;
   z-index: 1000;
 }
- 
+
 .carrinho-fechado {
   transform: translateX(100%);
 }
- 
+
 .carrinho-aberto {
   transform: translateX(0);
 }
- 
+
 .divTitulo {
   display: flex;
   align-items: center;
@@ -248,12 +313,12 @@ button:hover {
   color: white;
   background-color: #111827;
 }
- 
+
 .divTitulo h2 {
   margin: 0;
   font-size: 20px;
 }
- 
+
 .btnFechar {
   display: flex;
   align-items: center;
@@ -266,12 +331,12 @@ button:hover {
   color: white;
   background: rgba(255, 255, 255, 0.12);
 }
- 
+
 .btnFechar:hover {
   background: rgba(255, 255, 255, 0.22);
   opacity: 1;
 }
- 
+
 #carrinho > p {
   margin: 0;
   padding: 14px 20px;
@@ -282,23 +347,23 @@ button:hover {
   background-color: #fafafa;
   border-bottom: 1px solid #e5e7eb;
 }
- 
+
 #itens-carrinho {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
   padding: 4px 20px;
 }
- 
+
 #itens-carrinho:empty::after {
-  content: 'Seu carrinho está vazio';
+  content: 'Seu carrinho estï¿½ vazio';
   display: block;
   padding: 32px 0;
   text-align: center;
   font-size: 14px;
   color: #9ca3af;
 }
- 
+
 .carrinho-item {
   display: flex;
   align-items: center;
@@ -309,15 +374,15 @@ button:hover {
   border-bottom: 1px solid #f0f0f0;
   transition: background-color 0.15s ease;
 }
- 
+
 .carrinho-item:hover {
   background-color: #fafafa;
 }
- 
+
 .carrinho-item:last-child {
   border-bottom: none;
 }
- 
+
 .carrinho-item-img {
   width: 56px;
   height: 56px;
@@ -327,7 +392,7 @@ button:hover {
   background-color: #a1a4a9;
   flex-shrink: 0;
 }
- 
+
 .carrinho-item-info {
   flex: 1;
   display: flex;
@@ -335,7 +400,7 @@ button:hover {
   gap: 4px;
   min-width: 0;
 }
- 
+
 .carrinho-item-nome {
   font-weight: 600;
   font-size: 14px;
@@ -344,7 +409,7 @@ button:hover {
   overflow: hidden;
   text-overflow: ellipsis;
 }
- 
+
 .carrinho-item-tamanho {
   display: inline-block;
   width: fit-content;
@@ -354,14 +419,14 @@ button:hover {
   background-color: #f3f4f6;
   border-radius: 999px;
 }
- 
+
 .carrinho-item-qtd {
   display: flex;
   align-items: center;
   gap: 8px;
   margin-top: 4px;
 }
- 
+
 .btnQtd {
   display: flex;
   align-items: center;
@@ -372,25 +437,25 @@ button:hover {
   color: #374151;
   background-color: #e5e7eb;
 }
- 
+
 .btnQtd:hover {
   background-color: #d1d5db;
 }
- 
+
 .carrinho-item-quantidade {
   min-width: 16px;
   text-align: center;
   font-size: 13px;
   font-weight: 600;
 }
- 
+
 .carrinho-item-valor {
   font-weight: 700;
   font-size: 14px;
   color: #0f766e;
   flex-shrink: 0;
 }
- 
+
 #carrinho > p:last-of-type {
   margin: 0 20px;
   padding: 16px 0;
@@ -402,7 +467,7 @@ button:hover {
   letter-spacing: 0;
   color: #111827;
 }
- 
+
 #carrinho > button {
   width: calc(100% - 40px);
   margin: 4px 20px 20px;
@@ -413,13 +478,13 @@ button:hover {
   background-color: #111827;
   box-shadow: 0 4px 12px rgba(17, 24, 39, 0.25);
 }
- 
+
 #carrinho > button:hover {
   background-color: #1f2937;
 }
- 
-/* ===== ESTADO DE ERRO (tamanho não selecionado) ===== */
- 
+
+/* ===== ESTADO DE ERRO (tamanho nï¿½o selecionado) ===== */
+
 .erro {
   border: 1.5px solid #ef4444;
   border-radius: 8px;
@@ -428,7 +493,7 @@ button:hover {
   box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.12);
   animation: shake 0.35s ease;
 }
- 
+
 @keyframes shake {
   0%,
   100% {
@@ -450,7 +515,7 @@ button:hover {
 
 /* ===== CHECKOUT ===== */
 
-/* Controla elementos ocultos e define a aparência geral exclusiva da página. */
+/* Controla elementos ocultos e define a aparï¿½ncia geral exclusiva da pï¿½gina. */
 .checkout-page [hidden] {
   display: none !important;
 }
@@ -494,7 +559,7 @@ button:hover {
   outline-offset: 2px;
 }
 
-/* Organiza o cabeçalho, a marca da loja e o link de retorno ao catálogo. */
+/* Organiza o cabeï¿½alho, a marca da loja e o link de retorno ao catï¿½logo. */
 .checkout-header {
   padding: 28px 20px;
   text-align: left;
@@ -535,7 +600,7 @@ button:hover {
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* Define a largura do conteúdo e a apresentação do título da etapa. */
+/* Define a largura do conteï¿½do e a apresentaï¿½ï¿½o do tï¿½tulo da etapa. */
 .checkout-main {
   width: min(1180px, 100%);
   min-height: calc(100vh - 190px);
@@ -573,7 +638,7 @@ button:hover {
   text-transform: uppercase;
 }
 
-/* Cria o layout principal em duas colunas e a aparência reutilizável dos cards. */
+/* Cria o layout principal em duas colunas e a aparï¿½ncia reutilizï¿½vel dos cards. */
 .checkout-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 390px;
@@ -611,7 +676,7 @@ button:hover {
   font-size: 13px;
 }
 
-/* Distribui os campos pessoais e de endereço nas grades do formulário. */
+/* Distribui os campos pessoais e de endereï¿½o nas grades do formulï¿½rio. */
 .checkout-grade-campos {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -673,7 +738,7 @@ button:hover {
   grid-column: span 3;
 }
 
-/* Agrupa campo, botão e mensagens auxiliares da consulta de CEP e do cupom. */
+/* Agrupa campo, botï¿½o e mensagens auxiliares da consulta de CEP e do cupom. */
 .checkout-campo-cep {
   width: min(430px, 100%);
   margin-bottom: 18px;
@@ -709,7 +774,7 @@ button:hover {
   color: #0f766e;
 }
 
-/* Apresenta erros de validação em texto e destaca visualmente o campo inválido. */
+/* Apresenta erros de validaï¿½ï¿½o em texto e destaca visualmente o campo invï¿½lido. */
 .checkout-mensagem-campo,
 .checkout-mensagem-cupom {
   min-height: 18px;
@@ -758,7 +823,7 @@ button:hover {
   margin: 8px 0 0;
 }
 
-/* Padroniza botões, variações de cor, estados de hover e estado desabilitado. */
+/* Padroniza botï¿½es, variaï¿½ï¿½es de cor, estados de hover e estado desabilitado. */
 .checkout-botao {
   display: inline-flex;
   align-items: center;
@@ -834,7 +899,7 @@ button:hover {
   color: #0f766e;
 }
 
-/* Mantém o resumo visível em telas grandes e organiza a lista de produtos. */
+/* Mantï¿½m o resumo visï¿½vel em telas grandes e organiza a lista de produtos. */
 .checkout-resumo {
   position: sticky;
   top: 20px;
@@ -860,7 +925,7 @@ button:hover {
   border-bottom: 1px solid #e5e7eb;
 }
 
-/* Monta cada produto em colunas: imagem, informações e valor total. */
+/* Monta cada produto em colunas: imagem, informaï¿½ï¿½es e valor total. */
 .checkout-page .checkout-item {
   display: grid;
   grid-template-columns: 58px minmax(0, 1fr) auto;
@@ -999,7 +1064,7 @@ button:hover {
   font-weight: 800;
 }
 
-/* Cria os cards centrais usados no carrinho vazio e na confirmação do pedido. */
+/* Cria os cards centrais usados no carrinho vazio e na confirmaï¿½ï¿½o do pedido. */
 .checkout-estado-vazio,
 .checkout-confirmacao {
   width: min(760px, 100%);
@@ -1030,7 +1095,7 @@ button:hover {
   font-weight: 800;
 }
 
-/* Formata os pares de informação exibidos no comprovante. */
+/* Formata os pares de informaï¿½ï¿½o exibidos no comprovante. */
 .checkout-comprovante {
   display: grid;
   gap: 10px;
@@ -1057,14 +1122,14 @@ button:hover {
   text-align: right;
 }
 
-/* Reserva espaço para o retorno do EmailJS sem deslocar o restante da página. */
+/* Reserva espaï¿½o para o retorno do EmailJS sem deslocar o restante da pï¿½gina. */
 .checkout-status-email {
   min-height: 20px;
   font-size: 13px;
   font-weight: 600;
 }
 
-/* Separa e organiza o formulário opcional de avaliação. */
+/* Separa e organiza o formulï¿½rio opcional de avaliaï¿½ï¿½o. */
 .checkout-avaliacao {
   margin-top: 32px;
   padding-top: 26px;
@@ -1083,7 +1148,7 @@ button:hover {
   font-size: 13px;
 }
 
-/* Transforma os radios em estrelas, mantendo foco e seleção acessíveis. */
+/* Transforma os radios em estrelas, mantendo foco e seleï¿½ï¿½o acessï¿½veis. */
 .checkout-estrelas {
   display: inline-flex;
   flex-direction: row-reverse;
@@ -1118,7 +1183,7 @@ button:hover {
   outline-offset: 2px;
 }
 
-/* Alinha mensagem de comentário e contador de caracteres. */
+/* Alinha mensagem de comentï¿½rio e contador de caracteres. */
 .checkout-comentario-rodape {
   display: flex;
   justify-content: space-between;
@@ -1132,7 +1197,7 @@ button:hover {
   font-size: 12px;
 }
 
-/* Finaliza a identidade visual com o rodapé do checkout. */
+/* Finaliza a identidade visual com o rodapï¿½ do checkout. */
 .checkout-footer {
   padding: 22px 20px;
   text-align: center;
@@ -1157,7 +1222,7 @@ button:hover {
   }
 }
 
-/* Em celulares, empilha campos e ajusta produtos e comprovante à largura disponível. */
+/* Em celulares, empilha campos e ajusta produtos e comprovante ï¿½ largura disponï¿½vel. */
 @media (max-width: 640px) {
   .checkout-header-conteudo,
   .checkout-titulo-pagina {
@@ -1226,4 +1291,13 @@ button:hover {
     overflow-wrap: anywhere;
   }
 }
- 
+
+@media (max-width: 760px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    position: static;
+  }
+}

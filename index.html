@@ -11,7 +11,6 @@
       <h1 id="Nome_da_loja">Basic Shop</h1>
       <p>Onde o homem básico se destaca</p>
 
-
       <button id="botao-carrinho">
         <strong>Carrinho</strong>
         <span id="totalItens">Itens adicionados: 0</span>
@@ -22,9 +21,18 @@
     </header>
 
     <main>
+      <section class="filters" aria-label="Filtros de produtos">
+        <ul class="filter-options-type">
+          <li class="filter-option">Produto</li>
+        </ul>
+        <ul class="filter-options-color">
+          <li class="filter-option">Cor</li>
+        </ul>
+      </section>
+      <section id="vitrine-produtos"></section>
       <script src="carrinho.js"></script>
       <script src="script.js"></script>
-      
+      <script src="filters.js"></script>
     </main>
 
     <footer>

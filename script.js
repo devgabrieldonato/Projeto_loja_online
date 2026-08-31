@@ -351,12 +351,24 @@ const produtos = [
 ];
 
 const main = document.querySelector('main');
+const vitrineProdutos = document.getElementById('vitrine-produtos');
 
-// Evento para acontecer quando á pagina for carregada
-document.addEventListener('DOMContentLoaded', () => {
+function renderizarProdutos(listaProdutos) {
+  vitrineProdutos.querySelectorAll('.categorias, .sem-produtos').forEach((elemento) => {
+    elemento.remove();
+  });
+
+  if (listaProdutos.length === 0) {
+    const mensagem = document.createElement('p');
+    mensagem.classList.add('sem-produtos');
+    mensagem.textContent = 'Nenhum produto encontrado com esses filtros.';
+    vitrineProdutos.append(mensagem);
+    return;
+  }
+
   // salva as categorias em uma lista
   const categorias = [
-    ...new Set(produtos.map((produto2) => produto2.categoria)),
+    ...new Set(listaProdutos.map((produto2) => produto2.categoria)),
   ];
 
   let contador = 1;
@@ -371,10 +383,10 @@ document.addEventListener('DOMContentLoaded', () => {
     //  da um id pra ela que seria o contador, cada vez que o forEach percorre uma vez, aumenta 1 ( nunca vai ser o mesmo)
     sectionCategoria.id = contador;
     // faz o append ao HTML (adiciona)
-    main.append(sectionCategoria);
+    vitrineProdutos.append(sectionCategoria);
     // no id que demos antes na section, ele adiciona a Categoria
     document.getElementById(contador).innerHTML += `<h2>${categoria}</h2>`;
-    // depois de adiconar a section cria uma div
+    // depois de adicionar a section cria uma div
     const divProdutos = document.createElement('div');
     // demos uma classe de produtos
     divProdutos.classList.add('produtos');
@@ -384,7 +396,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById(contador).append(divProdutos);
 
     // forEach do produtos, para percorrer cada item
-    produtos.forEach((produto) => {
+    listaProdutos.forEach((produto) => {
       // quando a categoria do item for igual a categoria
       if (produto.categoria === categoria) {
         let botoesTamanho = ''; // variável para armazenar os botões de tamanho
@@ -406,13 +418,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div id='conjuntoBotoes_${produto.id}'>
                         ${botoesTamanho}
                     </div>
-                    <button id='adicionarCarrinho${contador}' class='addCarrinho'>Adicionar ao carrinho</button>
+                    <button id='adicionarCarrinho${produto.id}' class='addCarrinho'>Adicionar ao carrinho</button>
             </article>`;
-        // contador para crir um id ali para o botão tamanho.
-        contador = contador + 1;
       }
     });
+
+    contador = contador + 1;
   });
+}
+
+// Evento para acontecer quando á pagina for carregada
+document.addEventListener('DOMContentLoaded', () => {
+  renderizarProdutos(produtos);
 
   // event para o usuário escolher um tamanho.
   main.addEventListener('click', (e) => {
