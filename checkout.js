@@ -3,7 +3,7 @@ const CHAVE_CARRINHO = 'basicShopCarrinho';
 const CHAVE_PEDIDO = 'basicShopUltimoPedido';
 const CHAVE_AVALIACOES = 'basicShopAvaliacoes';
 
-// ConfiguraÁıes da loja e do serviÁo respons·vel pelo envio do e-mail.
+// Configura√ß√µes da loja e do servi√ßo respons√°vel pelo envio do e-mail.
 const UF_ORIGEM_LOJA = 'RS';
 const EMAILJS_CONFIG = {
   serviceId: 'service_5s7e0ul',
@@ -11,12 +11,12 @@ const EMAILJS_CONFIG = {
   publicKey: 'XlTIDKsFxfk5-3n8a',
 };
 
-// Regras fixas do cupom e do tamanho m·ximo permitido para o coment·rio.
+// Regras fixas do cupom e do tamanho m√°ximo permitido para o coment√°rio.
 const CUPOM_VALIDO = 'kurtcobain10';
 const PERCENTUAL_DESCONTO = 0.1;
 const LIMITE_COMENTARIO = 500;
 
-// Relaciona cada UF com sua regi„o para selecionar a regra de frete correspondente.
+// Relaciona cada UF com sua regi√£o para selecionar a regra de frete correspondente.
 const REGIOES_POR_UF = {
   AC: 'Norte', AL: 'Nordeste', AP: 'Norte', AM: 'Norte', BA: 'Nordeste',
   CE: 'Nordeste', DF: 'Centro-Oeste', ES: 'Sudeste', GO: 'Centro-Oeste',
@@ -26,23 +26,23 @@ const REGIOES_POR_UF = {
   SC: 'Sul', SP: 'Sudeste', SE: 'Nordeste', TO: 'Norte',
 };
 
-// Tabela acadÍmica de valor e prazo utilizada no c·lculo do frete.
+// Tabela acad√™mica de valor e prazo utilizada no c√°lculo do frete.
 const FRETES_POR_REGIAO = {
-  Sudeste: { valor: 15.9, prazo: '4 a 7 dias ˙teis' },
-  Sul: { valor: 19.9, prazo: '5 a 8 dias ˙teis' },
-  'Centro-Oeste': { valor: 19.9, prazo: '5 a 8 dias ˙teis' },
-  Nordeste: { valor: 24.9, prazo: '7 a 10 dias ˙teis' },
-  Norte: { valor: 29.9, prazo: '8 a 12 dias ˙teis' },
+  Sudeste: { valor: 15.9, prazo: '4 a 7 dias √∫teis' },
+  Sul: { valor: 19.9, prazo: '5 a 8 dias √∫teis' },
+  'Centro-Oeste': { valor: 19.9, prazo: '5 a 8 dias √∫teis' },
+  Nordeste: { valor: 24.9, prazo: '7 a 10 dias √∫teis' },
+  Norte: { valor: 29.9, prazo: '8 a 12 dias √∫teis' },
 };
 
-// Intl.NumberFormat transforma n˙meros em valores monet·rios no padr„o brasileiro.
+// Intl.NumberFormat transforma n√∫meros em valores monet√°rios no padr√£o brasileiro.
 const formatadorMoeda = new Intl.NumberFormat('pt-BR', {
   style: 'currency',
   currency: 'BRL',
 });
 
-// Centraliza as referÍncias aos elementos do HTML para reutiliz·-las nas funÁıes.
-// getElementById localiza um elemento pelo atributo id e devolve sua referÍncia.
+// Centraliza as refer√™ncias aos elementos do HTML para reutiliz√°-las nas fun√ß√µes.
+// getElementById localiza um elemento pelo atributo id e devolve sua refer√™ncia.
 const elementos = {
   vazio: document.getElementById('checkout-vazio'),
   conteudo: document.getElementById('checkout-conteudo'),
@@ -83,7 +83,7 @@ const elementos = {
   statusAvaliacao: document.getElementById('status-avaliacao'),
 };
 
-// Vari·veis que representam o estado atual da p·gina durante a navegaÁ„o.
+// Vari√°veis que representam o estado atual da p√°gina durante a navega√ß√£o.
 let ultimoCepConsultado = '';
 let consultaCepEmAndamento = false;
 let preenchimentoEnderecoManual = false;
@@ -93,24 +93,24 @@ let finalizando = false;
 let pedidoAtual = null;
 
 /**
- * Converte o valor em texto e remove tudo que n„o for n˙mero.
- * O mÈtodo replace usa uma express„o regular para limpar CEP e telefone.
+ * Converte o valor em texto e remove tudo que n√£o for n√∫mero.
+ * O m√©todo replace usa uma express√£o regular para limpar CEP e telefone.
  */
 function somenteDigitos(valor) {
   return String(valor || '').replace(/\D/g, '');
 }
 
 /**
- * Garante que o valor seja uma string e remove espaÁos do comeÁo e do fim.
- * O operador ?? evita erros quando o valor recebido È null ou undefined.
+ * Garante que o valor seja uma string e remove espa√ßos do come√ßo e do fim.
+ * O operador ?? evita erros quando o valor recebido √© null ou undefined.
  */
 function textoSeguro(valor) {
   return String(valor ?? '').trim();
 }
 
 /**
- * Confere se um objeto possui todos os dados necess·rios para ser usado como produto.
- * Boolean converte o resultado de todas as verificaÁıes em true ou false.
+ * Confere se um objeto possui todos os dados necess√°rios para ser usado como produto.
+ * Boolean converte o resultado de todas as verifica√ß√µes em true ou false.
  */
 function itemCarrinhoValido(item) {
   return Boolean(
@@ -127,7 +127,7 @@ function itemCarrinhoValido(item) {
 }
 
 /**
- * Cria uma cÛpia padronizada do produto, corrigindo textos e tipos numÈricos.
+ * Cria uma c√≥pia padronizada do produto, corrigindo textos e tipos num√©ricos.
  */
 function normalizarItem(item) {
   return {
@@ -142,8 +142,8 @@ function normalizarItem(item) {
 
 /**
  * Recupera e converte um JSON do sessionStorage ou localStorage.
- * JSON.parse reconstrÛi o objeto; se o conte˙do estiver inv·lido, o catch remove
- * o dado corrompido e devolve o valor padr„o recebido pela funÁ„o.
+ * JSON.parse reconstr√≥i o objeto; se o conte√∫do estiver inv√°lido, o catch remove
+ * o dado corrompido e devolve o valor padr√£o recebido pela fun√ß√£o.
  */
 function recuperarJsonArmazenado(armazenamento, chave, valorPadrao) {
   const valorSalvo = armazenamento.getItem(chave);
@@ -158,8 +158,8 @@ function recuperarJsonArmazenado(armazenamento, chave, valorPadrao) {
 }
 
 /**
- * Busca o carrinho da sess„o, mantÈm apenas produtos v·lidos com filter e
- * padroniza cada produto com map antes de utiliz·-lo no checkout.
+ * Busca o carrinho da sess√£o, mant√©m apenas produtos v√°lidos com filter e
+ * padroniza cada produto com map antes de utiliz√°-lo no checkout.
  */
 function recuperarCarrinho() {
   const dados = recuperarJsonArmazenado(sessionStorage, CHAVE_CARRINHO, []);
@@ -168,7 +168,7 @@ function recuperarCarrinho() {
 }
 
 /**
- * Valida os dados mÌnimos do comprovante antes de restaur·-lo na p·gina.
+ * Valida os dados m√≠nimos do comprovante antes de restaur√°-lo na p√°gina.
  */
 function pedidoSalvoValido(pedido) {
   return Boolean(
@@ -187,14 +187,14 @@ function pedidoSalvoValido(pedido) {
   );
 }
 
-// Dados calculados do carrinho; s„o atualizados sempre que a quantidade muda.
+// Dados calculados do carrinho; s√£o atualizados sempre que a quantidade muda.
 let itensNoCarrinho = recuperarCarrinho();
 let quantidadeTotal = 0;
 let subtotal = 0;
 
 /**
- * Recalcula a quantidade e o subtotal. O mÈtodo reduce percorre todos os itens
- * e acumula um ˙nico resultado para cada c·lculo.
+ * Recalcula a quantidade e o subtotal. O m√©todo reduce percorre todos os itens
+ * e acumula um √∫nico resultado para cada c√°lculo.
  */
 function recalcularCarrinho() {
   quantidadeTotal = itensNoCarrinho.reduce(
@@ -210,7 +210,7 @@ function recalcularCarrinho() {
 recalcularCarrinho();
 
 /**
- * Re˙ne subtotal, desconto, frete e total conforme o estado atual do checkout.
+ * Re√∫ne subtotal, desconto, frete e total conforme o estado atual do checkout.
  */
 function valoresAtuais() {
   const desconto = cupomAplicado
@@ -227,7 +227,7 @@ function valoresAtuais() {
 
 /**
  * Cria elementos HTML de modo seguro. createElement monta a tag, className
- * atribui a classe e textContent adiciona texto sem interpretar cÛdigo HTML.
+ * atribui a classe e textContent adiciona texto sem interpretar c√≥digo HTML.
  */
 function criarElemento(tag, classe, texto) {
   const elemento = document.createElement(tag);
@@ -237,9 +237,9 @@ function criarElemento(tag, classe, texto) {
 }
 
 /**
- * ReconstrÛi visualmente a lista de produtos e seus controles de quantidade.
+ * Reconstr√≥i visualmente a lista de produtos e seus controles de quantidade.
  * replaceChildren limpa a lista, forEach percorre os itens e append insere os
- * novos elementos. dataset guarda a aÁ„o e o Ìndice usados no clique.
+ * novos elementos. dataset guarda a a√ß√£o e o √≠ndice usados no clique.
  */
 function renderizarItens() {
   elementos.listaItens.replaceChildren();
@@ -252,7 +252,7 @@ function renderizarItens() {
 
     const informacoes = criarElemento('div', 'checkout-item-informacoes');
     const controles = criarElemento('div', 'checkout-item-controles');
-    const diminuir = criarElemento('button', 'checkout-quantidade-botao', '?');
+    const diminuir = criarElemento('button', 'checkout-quantidade-botao', '‚àí');
     diminuir.type = 'button';
     diminuir.dataset.acao = 'diminuir';
     diminuir.dataset.indice = String(indice);
@@ -293,7 +293,7 @@ function renderizarItens() {
 }
 
 /**
- * Salva o carrinho atualizado na sess„o ou remove a chave se ele estiver vazio.
+ * Salva o carrinho atualizado na sess√£o ou remove a chave se ele estiver vazio.
  * JSON.stringify converte o array em texto antes do armazenamento.
  */
 function salvarCarrinhoAtualizado() {
@@ -305,7 +305,7 @@ function salvarCarrinhoAtualizado() {
 }
 
 /**
- * Sincroniza c·lculos, sessionStorage e interface depois de qualquer alteraÁ„o.
+ * Sincroniza c√°lculos, sessionStorage e interface depois de qualquer altera√ß√£o.
  */
 function atualizarCarrinhoNaTela() {
   recalcularCarrinho();
@@ -322,8 +322,8 @@ function atualizarCarrinhoNaTela() {
 }
 
 /**
- * Trata os cliques em + e ?. closest encontra o bot„o acionado, dataset informa
- * qual operaÁ„o executar e splice remove o produto quando sua quantidade zera.
+ * Trata os cliques em + e ‚àí. closest encontra o bot√£o acionado, dataset informa
+ * qual opera√ß√£o executar e splice remove o produto quando sua quantidade zera.
  */
 function alterarQuantidadeItem(evento) {
   const botao = evento.target.closest('button[data-acao][data-indice]');
@@ -376,26 +376,26 @@ function limparErro(campo) {
   definirErro(campo, '');
 }
 
-/** Testa o formato b·sico do e-mail por meio de uma express„o regular. */
+/** Testa o formato b√°sico do e-mail por meio de uma express√£o regular. */
 function validarEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 /**
- * Valida todos os campos obrigatÛrios, a consulta do CEP e o c·lculo do frete.
- * forEach aplica as validaÁıes e focus leva o usu·rio ao primeiro erro encontrado.
+ * Valida todos os campos obrigat√≥rios, a consulta do CEP e o c√°lculo do frete.
+ * forEach aplica as valida√ß√µes e focus leva o usu√°rio ao primeiro erro encontrado.
  */
 function validarFormulario() {
   const validacoes = [
     [elementos.nome, textoSeguro(elementos.nome.value).length >= 3, 'Informe seu nome completo.'],
-    [elementos.email, validarEmail(textoSeguro(elementos.email.value)), 'Informe um e-mail v·lido.'],
-    [elementos.telefone, !elementos.telefone.value || [10, 11].includes(somenteDigitos(elementos.telefone.value).length), 'Informe um telefone com DDD v·lido.'],
-    [elementos.cep, somenteDigitos(elementos.cep.value).length === 8, 'Informe um CEP com oito dÌgitos.'],
+    [elementos.email, validarEmail(textoSeguro(elementos.email.value)), 'Informe um e-mail v√°lido.'],
+    [elementos.telefone, !elementos.telefone.value || [10, 11].includes(somenteDigitos(elementos.telefone.value).length), 'Informe um telefone com DDD v√°lido.'],
+    [elementos.cep, somenteDigitos(elementos.cep.value).length === 8, 'Informe um CEP com oito d√≠gitos.'],
     [elementos.logradouro, Boolean(textoSeguro(elementos.logradouro.value)), 'Informe o logradouro.'],
-    [elementos.numero, Boolean(textoSeguro(elementos.numero.value)), 'Informe o n˙mero.'],
+    [elementos.numero, Boolean(textoSeguro(elementos.numero.value)), 'Informe o n√∫mero.'],
     [elementos.bairro, Boolean(textoSeguro(elementos.bairro.value)), 'Informe o bairro.'],
     [elementos.cidade, Boolean(textoSeguro(elementos.cidade.value)), 'Informe a cidade.'],
-    [elementos.uf, Boolean(REGIOES_POR_UF[textoSeguro(elementos.uf.value).toUpperCase()]), 'Informe uma UF v·lida.'],
+    [elementos.uf, Boolean(REGIOES_POR_UF[textoSeguro(elementos.uf.value).toUpperCase()]), 'Informe uma UF v√°lida.'],
   ];
 
   let primeiroInvalido = null;
@@ -422,7 +422,7 @@ function validarFormulario() {
   return !primeiroInvalido && Boolean(freteAtual);
 }
 
-/** Formata progressivamente o telefone no padr„o brasileiro durante a digitaÁ„o. */
+/** Formata progressivamente o telefone no padr√£o brasileiro durante a digita√ß√£o. */
 function mascararTelefone(valor) {
   const numeros = somenteDigitos(valor).slice(0, 11);
   if (numeros.length <= 2) return numeros.replace(/^(\d{0,2})/, '($1');
@@ -431,7 +431,7 @@ function mascararTelefone(valor) {
   return numeros.replace(/^(\d{2})(\d{5})(\d+)/, '($1) $2-$3');
 }
 
-/** Limita o CEP a oito n˙meros e acrescenta o hÌfen apÛs o quinto dÌgito. */
+/** Limita o CEP a oito n√∫meros e acrescenta o h√≠fen ap√≥s o quinto d√≠gito. */
 function mascararCep(valor) {
   const numeros = somenteDigitos(valor).slice(0, 8);
   return numeros.length > 5
@@ -439,16 +439,16 @@ function mascararCep(valor) {
     : numeros;
 }
 
-/** Limpa um frete antigo quando CEP ou UF È alterado e atualiza o resumo. */
+/** Limpa um frete antigo quando CEP ou UF √© alterado e atualiza o resumo. */
 function invalidarFrete() {
   freteAtual = null;
   elementos.statusFrete.textContent = 'Consulte o CEP para calcular o frete.';
-  elementos.valorFreteCard.textContent = '?';
+  elementos.valorFreteCard.textContent = '‚Äî';
   atualizarResumo();
 }
 
 /**
- * Calcula valor e prazo com base na UF de origem e na regi„o do destino.
+ * Calcula valor e prazo com base na UF de origem e na regi√£o do destino.
  * Entregas dentro do RS recebem a regra especial para o mesmo estado.
  */
 function calcularFrete(ufDestino) {
@@ -469,7 +469,7 @@ function calcularFrete(ufDestino) {
   }
 
   const regra = origem === destino
-    ? { valor: 12.9, prazo: '3 a 5 dias ˙teis' }
+    ? { valor: 12.9, prazo: '3 a 5 dias √∫teis' }
     : FRETES_POR_REGIAO[REGIOES_POR_UF[destino]];
 
   freteAtual = {
@@ -483,22 +483,22 @@ function calcularFrete(ufDestino) {
 }
 
 /**
- * Consulta o ViaCEP de forma assÌncrona. fetch envia a requisiÁ„o, await aguarda
+ * Consulta o ViaCEP de forma ass√≠ncrona. fetch envia a requisi√ß√£o, await aguarda
  * a resposta e response.json converte o retorno. try/catch/finally trata sucesso,
- * falha e a restauraÁ„o obrigatÛria do bot„o ao terminar a consulta.
+ * falha e a restaura√ß√£o obrigat√≥ria do bot√£o ao terminar a consulta.
  */
 async function consultarCep() {
   if (consultaCepEmAndamento) return;
   const cep = somenteDigitos(elementos.cep.value);
 
   if (cep.length !== 8) {
-    definirErro(elementos.cep, 'Informe um CEP com oito dÌgitos.');
+    definirErro(elementos.cep, 'Informe um CEP com oito d√≠gitos.');
     elementos.cep.focus();
     return;
   }
 
   if (cep === ultimoCepConsultado && freteAtual) {
-    elementos.statusCep.textContent = 'EndereÁo j· consultado.';
+    elementos.statusCep.textContent = 'Endere√ßo j√° consultado.';
     return;
   }
 
@@ -517,7 +517,7 @@ async function consultarCep() {
 
     if (endereco.erro) {
       ultimoCepConsultado = '';
-      definirErro(elementos.cep, 'CEP n„o encontrado. Verifique o n˙mero informado.');
+      definirErro(elementos.cep, 'CEP n√£o encontrado. Verifique o n√∫mero informado.');
       elementos.statusCep.textContent = '';
       elementos.cep.focus();
       return;
@@ -531,7 +531,7 @@ async function consultarCep() {
 
     ultimoCepConsultado = cep;
     preenchimentoEnderecoManual = false;
-    elementos.statusCep.textContent = 'EndereÁo encontrado.';
+    elementos.statusCep.textContent = 'Endere√ßo encontrado.';
     calcularFrete(endereco.uf);
     elementos.numero.focus();
   } catch {
@@ -539,7 +539,7 @@ async function consultarCep() {
     preenchimentoEnderecoManual = true;
     limparErro(elementos.cep);
     elementos.statusCep.textContent =
-      'ViaCEP indisponÌvel. Preencha o endereÁo e a UF manualmente para calcular o frete.';
+      'ViaCEP indispon√≠vel. Preencha o endere√ßo e a UF manualmente para calcular o frete.';
     elementos.logradouro.focus();
   } finally {
     consultaCepEmAndamento = false;
@@ -557,8 +557,8 @@ function informarCupom(mensagem, tipo = '') {
 }
 
 /**
- * Aplica ou remove o cupom. toLowerCase torna a comparaÁ„o independente de
- * mai˙sculas e min˙sculas e classList altera a aparÍncia do bloco.
+ * Aplica ou remove o cupom. toLowerCase torna a compara√ß√£o independente de
+ * mai√∫sculas e min√∫sculas e classList altera a apar√™ncia do bloco.
  */
 function alternarCupom() {
   if (cupomAplicado) {
@@ -580,7 +580,7 @@ function alternarCupom() {
     return;
   }
   if (codigo !== CUPOM_VALIDO) {
-    informarCupom('Cupom inv·lido. Verifique o cÛdigo informado.', 'erro');
+    informarCupom('Cupom inv√°lido. Verifique o c√≥digo informado.', 'erro');
     elementos.codigoCupom.focus();
     return;
   }
@@ -590,13 +590,13 @@ function alternarCupom() {
   elementos.codigoCupom.disabled = true;
   elementos.aplicarCupom.textContent = 'Remover cupom';
   elementos.codigoCupom.closest('.checkout-cupom').classList.add('checkout-cupom-aplicado');
-  informarCupom('Cupom aplicado! VocÍ recebeu 10% de desconto.', 'aplicado');
+  informarCupom('Cupom aplicado! Voc√™ recebeu 10% de desconto.', 'aplicado');
   atualizarResumo();
 }
 
 /**
- * Gera um identificador com data e sufixo aleatÛrio. crypto.getRandomValues
- * fornece um n˙mero aleatÛrio mais confi·vel que Math.random.
+ * Gera um identificador com data e sufixo aleat√≥rio. crypto.getRandomValues
+ * fornece um n√∫mero aleat√≥rio mais confi√°vel que Math.random.
  */
 function gerarNumeroPedido() {
   const agora = new Date();
@@ -610,8 +610,8 @@ function gerarNumeroPedido() {
 }
 
 /**
- * Re˙ne cliente, endereÁo, entrega, cupom, produtos e valores em um ˙nico objeto.
- * map e o operador spread criam cÛpias dos itens para preservar o comprovante.
+ * Re√∫ne cliente, endere√ßo, entrega, cupom, produtos e valores em um √∫nico objeto.
+ * map e o operador spread criam c√≥pias dos itens para preservar o comprovante.
  */
 function montarPedido() {
   const valores = valoresAtuais();
@@ -647,11 +647,11 @@ function montarPedido() {
 
 /**
  * Preenche o comprovante visual, controla as linhas opcionais do cupom e troca
- * o formul·rio pela tela de sucesso.
+ * o formul√°rio pela tela de sucesso.
  */
 function preencherConfirmacao(pedido) {
   document.getElementById('confirmacao-introducao').textContent =
-    'Confira os dados abaixo. VocÍ pode voltar para a loja quando desejar.';
+    'Confira os dados abaixo. Voc√™ pode voltar para a loja quando desejar.';
   document.getElementById('confirmacao-id').textContent = pedido.id;
   document.getElementById('confirmacao-cliente').textContent = pedido.cliente.nome;
   document.getElementById('confirmacao-email').textContent = pedido.cliente.email;
@@ -668,7 +668,7 @@ function preencherConfirmacao(pedido) {
   linhaDesconto.hidden = !pedido.cupom;
   if (pedido.cupom) {
     document.getElementById('confirmacao-cupom').textContent =
-      `${pedido.cupom.codigo} ? ${pedido.cupom.percentual}%`;
+      `${pedido.cupom.codigo} ‚Äî ${pedido.cupom.percentual}%`;
     document.getElementById('confirmacao-desconto').textContent =
       `- ${formatadorMoeda.format(pedido.desconto)}`;
   }
@@ -680,7 +680,7 @@ function preencherConfirmacao(pedido) {
   prepararAvaliacao(pedido.id);
 }
 
-/** Confirma que as trÍs configuraÁıes obrigatÛrias do EmailJS foram preenchidas. */
+/** Confirma que as tr√™s configura√ß√µes obrigat√≥rias do EmailJS foram preenchidas. */
 function emailJsConfigurado() {
   return Object.values(EMAILJS_CONFIG).every(
     (valor) => textoSeguro(valor) && !valor.startsWith('PREENCHER_'),
@@ -694,7 +694,7 @@ function emailJsConfigurado() {
 function resumoItensEmail(pedido) {
   return pedido.itens
     .map((item) =>
-      `${item.quantidade}x ${item.nome} (${item.tamanho}) ? ` +
+      `${item.quantidade}x ${item.nome} (${item.tamanho}) ‚Äî ` +
       formatadorMoeda.format(item.preco * item.quantidade),
     )
     .join('\n');
@@ -702,21 +702,21 @@ function resumoItensEmail(pedido) {
 
 /**
  * Inicializa o EmailJS e envia os dados do pedido ao template configurado.
- * A Promise devolvida por emailjs.send È aguardada para informar sucesso ou erro.
+ * A Promise devolvida por emailjs.send √© aguardada para informar sucesso ou erro.
  */
 async function enviarConfirmacaoEmail(pedido) {
   if (!emailJsConfigurado()) {
     elementos.statusEmail.textContent =
-      'Pedido realizado. O e-mail aguarda a configuraÁ„o do Service ID, Template ID e Public Key do EmailJS.';
+      'Pedido realizado. O e-mail aguarda a configura√ß√£o do Service ID, Template ID e Public Key do EmailJS.';
     return;
   }
   if (!window.emailjs) {
     elementos.statusEmail.textContent =
-      'Pedido realizado com sucesso, mas o serviÁo de e-mail n„o pÙde ser carregado.';
+      'Pedido realizado com sucesso, mas o servi√ßo de e-mail n√£o p√¥de ser carregado.';
     return;
   }
 
-  elementos.statusEmail.textContent = 'Enviando e-mail de confirmaÁ„o...';
+  elementos.statusEmail.textContent = 'Enviando e-mail de confirma√ß√£o...';
   const endereco = pedido.endereco;
   const parametros = {
     name: pedido.cliente.nome,
@@ -724,15 +724,15 @@ async function enviarConfirmacaoEmail(pedido) {
     to_email: pedido.cliente.email,
     nome_cliente: pedido.cliente.nome,
     email_cliente: pedido.cliente.email,
-    telefone_cliente: pedido.cliente.telefone || 'N„o informado',
+    telefone_cliente: pedido.cliente.telefone || 'N√£o informado',
     numero_pedido: pedido.id,
     order_id: pedido.id,
     resumo_pedido: resumoItensEmail(pedido),
     message: resumoItensEmail(pedido),
     endereco_entrega:
       `${endereco.logradouro}, ${endereco.numero}` +
-      `${endereco.complemento ? `, ${endereco.complemento}` : ''} ? ` +
-      `${endereco.bairro}, ${endereco.cidade}/${endereco.uf} ? CEP ${endereco.cep}`,
+      `${endereco.complemento ? `, ${endereco.complemento}` : ''} ‚Äî ` +
+      `${endereco.bairro}, ${endereco.cidade}/${endereco.uf} ‚Äî CEP ${endereco.cep}`,
     codigo_cupom: pedido.cupom?.codigo || 'Nenhum',
     percentual_desconto: pedido.cupom ? '10%' : '0%',
     valor_subtotal: formatadorMoeda.format(pedido.subtotal),
@@ -759,13 +759,13 @@ async function enviarConfirmacaoEmail(pedido) {
     const detalhe = textoSeguro(erro?.text);
     elementos.statusEmail.textContent = detalhe
       ? `Pedido realizado, mas o EmailJS recusou o envio: ${detalhe}`
-      : 'Pedido realizado com sucesso, mas n„o foi possÌvel enviar o e-mail de confirmaÁ„o.';
+      : 'Pedido realizado com sucesso, mas n√£o foi poss√≠vel enviar o e-mail de confirma√ß√£o.';
   }
 }
 
 /**
- * Interrompe o envio tradicional do formul·rio, valida os campos, salva o
- * comprovante, limpa o carrinho, mostra a confirmaÁ„o e solicita o e-mail.
+ * Interrompe o envio tradicional do formul√°rio, valida os campos, salva o
+ * comprovante, limpa o carrinho, mostra a confirma√ß√£o e solicita o e-mail.
  */
 async function finalizarPedido(evento) {
   evento.preventDefault();
@@ -783,23 +783,23 @@ async function finalizarPedido(evento) {
   await enviarConfirmacaoEmail(pedidoAtual);
 }
 
-/** Recupera do localStorage a lista de avaliaÁıes salvas neste navegador. */
+/** Recupera do localStorage a lista de avalia√ß√µes salvas neste navegador. */
 function recuperarAvaliacoes() {
   const avaliacoes = recuperarJsonArmazenado(localStorage, CHAVE_AVALIACOES, []);
   return Array.isArray(avaliacoes) ? avaliacoes : [];
 }
 
 /**
- * Verifica com some se o pedido j· foi avaliado e, nesse caso, bloqueia um
- * segundo envio e restaura o texto final do bot„o.
+ * Verifica com some se o pedido j√° foi avaliado e, nesse caso, bloqueia um
+ * segundo envio e restaura o texto final do bot√£o.
  */
 function prepararAvaliacao(pedidoId) {
   const avaliacaoExistente = recuperarAvaliacoes().some(
     (avaliacao) => avaliacao.pedidoId === pedidoId,
   );
   if (avaliacaoExistente) {
-    elementos.statusAvaliacao.textContent = 'Este pedido j· foi avaliado. Obrigado pela sua opini„o!';
-    elementos.enviarAvaliacao.textContent = 'AvaliaÁ„o enviada';
+    elementos.statusAvaliacao.textContent = 'Este pedido j√° foi avaliado. Obrigado pela sua opini√£o!';
+    elementos.enviarAvaliacao.textContent = 'Avalia√ß√£o enviada';
     elementos.formAvaliacao.querySelectorAll('input, textarea, button').forEach((controle) => {
       controle.disabled = true;
     });
@@ -807,8 +807,8 @@ function prepararAvaliacao(pedidoId) {
 }
 
 /**
- * Valida a nota e o coment·rio, evita duplicidade e armazena a opini„o no
- * localStorage. preventDefault impede o recarregamento do formul·rio.
+ * Valida a nota e o coment√°rio, evita duplicidade e armazena a opini√£o no
+ * localStorage. preventDefault impede o recarregamento do formul√°rio.
  */
 function enviarAvaliacao(evento) {
   evento.preventDefault();
@@ -821,7 +821,7 @@ function enviarAvaliacao(evento) {
   erroNota.textContent = notaSelecionada ? '' : 'Selecione uma nota de 1 a 5 estrelas.';
   erroComentario.textContent = comentario.length <= LIMITE_COMENTARIO
     ? ''
-    : `O coment·rio deve ter no m·ximo ${LIMITE_COMENTARIO} caracteres.`;
+    : `O coment√°rio deve ter no m√°ximo ${LIMITE_COMENTARIO} caracteres.`;
 
   if (!notaSelecionada) {
     elementos.formAvaliacao.querySelector('input[name="nota"]').focus();
@@ -834,7 +834,7 @@ function enviarAvaliacao(evento) {
 
   const avaliacoes = recuperarAvaliacoes();
   if (avaliacoes.some((avaliacao) => avaliacao.pedidoId === pedidoAtual.id)) {
-    elementos.statusAvaliacao.textContent = 'Este pedido j· foi avaliado.';
+    elementos.statusAvaliacao.textContent = 'Este pedido j√° foi avaliado.';
     return;
   }
 
@@ -845,38 +845,38 @@ function enviarAvaliacao(evento) {
     data: new Date().toISOString(),
   });
   localStorage.setItem(CHAVE_AVALIACOES, JSON.stringify(avaliacoes));
-  elementos.statusAvaliacao.textContent = 'Obrigado pela sua opini„o!';
-  elementos.enviarAvaliacao.textContent = 'AvaliaÁ„o enviada';
+  elementos.statusAvaliacao.textContent = 'Obrigado pela sua opini√£o!';
+  elementos.enviarAvaliacao.textContent = 'Avalia√ß√£o enviada';
   elementos.formAvaliacao.querySelectorAll('input, textarea, button').forEach((controle) => {
     controle.disabled = true;
   });
 }
 
-/** Recupera o ˙ltimo pedido da sess„o e volta a exibir seu comprovante. */
+/** Recupera o √∫ltimo pedido da sess√£o e volta a exibir seu comprovante. */
 function restaurarPedidoSalvo() {
   const salvo = recuperarJsonArmazenado(sessionStorage, CHAVE_PEDIDO, null);
   if (!pedidoSalvoValido(salvo)) return false;
   pedidoAtual = salvo;
   preencherConfirmacao(salvo);
-  elementos.statusEmail.textContent = 'Comprovante recuperado desta sess„o.';
+  elementos.statusEmail.textContent = 'Comprovante recuperado desta sess√£o.';
   return true;
 }
 
 /**
- * Inicializa a p·gina, escolhe entre carrinho, estado vazio e comprovante e
- * registra todos os addEventListener necess·rios para as interaÁıes do usu·rio.
+ * Inicializa a p√°gina, escolhe entre carrinho, estado vazio e comprovante e
+ * registra todos os addEventListener necess√°rios para as intera√ß√µes do usu√°rio.
  */
 function iniciarCheckout() {
-  // Atualiza e limita o contador sempre que o usu·rio digita no coment·rio.
+  // Atualiza e limita o contador sempre que o usu√°rio digita no coment√°rio.
   elementos.comentario.addEventListener('input', () => {
     elementos.comentario.value = elementos.comentario.value.slice(0, LIMITE_COMENTARIO);
     elementos.contadorComentario.textContent =
       `${elementos.comentario.value.length}/${LIMITE_COMENTARIO}`;
   });
-  // Intercepta o submit da avaliaÁ„o e direciona o evento para a funÁ„o respons·vel.
+  // Intercepta o submit da avalia√ß√£o e direciona o evento para a fun√ß√£o respons√°vel.
   elementos.formAvaliacao.addEventListener('submit', enviarAvaliacao);
 
-  // Sem produtos, tenta restaurar o comprovante; se n„o existir, mostra o estado vazio.
+  // Sem produtos, tenta restaurar o comprovante; se n√£o existir, mostra o estado vazio.
   if (itensNoCarrinho.length === 0) {
     if (!restaurarPedidoSalvo()) elementos.vazio.hidden = false;
     return;
@@ -886,12 +886,12 @@ function iniciarCheckout() {
   renderizarItens();
   atualizarResumo();
 
-  // Aplica a m·scara e remove a mensagem de erro durante a digitaÁ„o do telefone.
+  // Aplica a m√°scara e remove a mensagem de erro durante a digita√ß√£o do telefone.
   elementos.telefone.addEventListener('input', () => {
     elementos.telefone.value = mascararTelefone(elementos.telefone.value);
     limparErro(elementos.telefone);
   });
-  // Formata o CEP e invalida um frete antigo quando seu valor È alterado.
+  // Formata o CEP e invalida um frete antigo quando seu valor √© alterado.
   elementos.cep.addEventListener('input', () => {
     elementos.cep.value = mascararCep(elementos.cep.value);
     limparErro(elementos.cep);
@@ -901,7 +901,7 @@ function iniciarCheckout() {
       invalidarFrete();
     }
   });
-  // MantÈm a UF em duas letras mai˙sculas e recalcula o fallback manual do frete.
+  // Mant√©m a UF em duas letras mai√∫sculas e recalcula o fallback manual do frete.
   elementos.uf.addEventListener('input', () => {
     elementos.uf.value = elementos.uf.value.toUpperCase().replace(/[^A-Z]/g, '').slice(0, 2);
     invalidarFrete();
@@ -910,16 +910,16 @@ function iniciarCheckout() {
     }
   });
 
-  // Remove o erro de cada campo comum assim que o usu·rio comeÁa a corrigi-lo.
+  // Remove o erro de cada campo comum assim que o usu√°rio come√ßa a corrigi-lo.
   elementos.formulario.querySelectorAll('input').forEach((campo) => {
     campo.addEventListener('input', () => {
       if (campo !== elementos.cep && campo !== elementos.telefone) limparErro(campo);
     });
   });
 
-  // Liga os botıes e formul·rios ‡s respectivas funÁıes de regra de negÛcio.
+  // Liga os bot√µes e formul√°rios √†s respectivas fun√ß√µes de regra de neg√≥cio.
   elementos.consultarCep.addEventListener('click', consultarCep);
-  // Permite consultar o CEP tambÈm pressionando Enter dentro do campo.
+  // Permite consultar o CEP tamb√©m pressionando Enter dentro do campo.
   elementos.cep.addEventListener('keydown', (evento) => {
     if (evento.key === 'Enter') {
       evento.preventDefault();
@@ -930,5 +930,6 @@ function iniciarCheckout() {
   elementos.formulario.addEventListener('submit', finalizarPedido);
 }
 
-// Inicia o checkout somente depois que todo o arquivo e suas funÁıes foram definidos.
+// Inicia o checkout somente depois que todo o arquivo e suas fun√ß√µes foram definidos.
 iniciarCheckout();
+
