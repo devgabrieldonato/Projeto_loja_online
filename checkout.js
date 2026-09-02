@@ -16,6 +16,19 @@ const CUPOM_VALIDO = 'kurtcobain10';
 const PERCENTUAL_DESCONTO = 0.1;
 const LIMITE_COMENTARIO = 500;
 
+//DDs brasileiros aceitos para a validação do celular informado no checkout
+const DDDS_VALIDOS = new Set([
+  '11', '12', '13', '14', '15', '16', '17', '18', '19',
+  '21', '22', '24', '27', '28',
+  '31', '32', '33', '34', '35', '37', '38',
+  '41', '42', '43', '44', '45', '46', '47', '48', '49',
+  '51', '53', '54', '55', 
+  '61', '62', '63', '64', '65', '66', '67', '68', '69',
+  '71', '73', '74', '75', '77', '79', 
+  '81', '82', '83', '84', '85', '86', '87', '88', '89',
+  '91', '92', '93', '94', '95', '96', '97', '98', '99' 
+]);
+
 // Relaciona cada UF com sua região para selecionar a regra de frete correspondente.
 const REGIOES_POR_UF = {
   AC: 'Norte', AL: 'Nordeste', AP: 'Norte', AM: 'Norte', BA: 'Nordeste',
@@ -381,15 +394,57 @@ function validarEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+/** Retorna a mensagem de erro correspondente ao celular informado. */
+function obterErroCelular(telefone) {
+  const digitos = somenteDigitos(telefone);
+
+  // Campo vazio é válido porque o celular é opcional.
+  if (!digitos) {
+    return '';
+  }
+
+  // DDD + celular precisam totalizar 11 dígitos.
+  if (digitos.length !== 11) {
+    return 'Informe um número de celular válido.';
+  }
+
+  const ddd = digitos.slice(0, 2);
+  const celular = digitos.slice(2);
+
+  // Mensagem específica para um DDD inexistente.
+  if (!DDDS_VALIDOS.has(ddd)) {
+    return 'Informe um celular com DDD válido.';
+  }
+
+  // Verifica se o celular possui nove dígitos e começa com 9.
+  if (!/^9\d{8}$/.test(celular)) {
+    return 'Informe um número de celular válido.';
+  }
+
+  // Rejeita sequências artificiais.
+  if (/^9(\d)\1{7}$/.test(celular)) {
+    return 'Informe um número de celular válido.';
+  }
+
+  // String vazia significa que não existe erro.
+  return '';
+}
+
 /**
  * Valida todos os campos obrigatórios, a consulta do CEP e o cálculo do frete.
  * forEach aplica as validações e focus leva o usuário ao primeiro erro encontrado.
  */
 function validarFormulario() {
+  const erroCelular = obterErroCelular(elementos.telefone.value);
+
   const validacoes = [
     [elementos.nome, textoSeguro(elementos.nome.value).length >= 3, 'Informe seu nome completo.'],
     [elementos.email, validarEmail(textoSeguro(elementos.email.value)), 'Informe um e-mail válido.'],
-    [elementos.telefone, !elementos.telefone.value || [10, 11].includes(somenteDigitos(elementos.telefone.value).length), 'Informe um telefone com DDD válido.'],
+    [
+      elementos.telefone,
+      !erroCelular,
+      erroCelular,
+    ],
     [elementos.cep, somenteDigitos(elementos.cep.value).length === 8, 'Informe um CEP com oito dígitos.'],
     [elementos.logradouro, Boolean(textoSeguro(elementos.logradouro.value)), 'Informe o logradouro.'],
     [elementos.numero, Boolean(textoSeguro(elementos.numero.value)), 'Informe o número.'],
